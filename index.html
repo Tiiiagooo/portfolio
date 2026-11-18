@@ -38,26 +38,71 @@
   <button class="rejouer" id="rejouer" type="button">Rallumer l'écran</button>
 </header>
 
-<main id="accueil" class="hero">
-  <p class="sur-titre" style="--i:0">NLP · LLM · Data engineering</p>
+<main>
+<section id="accueil" class="hero">
+  <p class="recherche" style="--i:0"><span class="point" aria-hidden="true"></span>Je cherche un poste en NLP, LLM ou data</p>
   <h1 style="--i:1">Informaticien et linguiste.</h1>
   <p class="chapo" style="--i:2">Diplômé du Master Langue et Informatique de Sorbonne Université. J'ai construit un outil d'annotation pour un laboratoire du CNRS, un pipeline NLP chez EDF R&amp;D, des chaînes de données chez Bergerat Rent (Caterpillar), et je développe aujourd'hui un agent LLM pour un client en gestion locative.</p>
 
   <ul class="preuves" style="--i:3" aria-label="Quelques résultats">
-    <li><b>79 %</b><span>de F1 moyen, détection de non-conformités (EDF R&amp;D)</span></li>
-    <li><b>156</b><span>tests automatisés sur l'agent IA</span></li>
-    <li><b>17 819</b><span>chansons analysées pour mon mémoire</span></li>
+    <li><b>84 à 88 %</b><span>des erreurs de mon outil d'annotation signalées par l'outil lui-même (CNRS)</span></li>
+    <li><b>½ journée</b><span>pour traiter les données promotionnelles chez Carrefour, une fois automatisées en Python</span></li>
+    <li><b>5</b><span>fournisseurs de LLM en cascade : mon agent IA continue de répondre si l'un tombe en panne</span></li>
   </ul>
 
   <div class="actions" style="--i:4">
-    <a class="btn" href="https://github.com/Tiiiagooo/agent-ia-publique">L'agent IA en détail</a>
+    <a class="btn" href="#parcours">Mon parcours</a>
+    <a class="btn btn-2" href="https://github.com/Tiiiagooo/agent-ia-publique">L'agent IA en détail</a>
     <a class="btn btn-2" href="https://github.com/Tiiiagooo">Mon GitHub</a>
     <!-- [À COMPLÉTER] liens du CV en PDF et de LinkedIn -->
   </div>
+</section>
 
-  <p class="chantier" style="--i:5">Site en construction : la démo de l'agent, mes projets et une analyse du marché de l'emploi data et IA arrivent bientôt.</p>
+<!-- Parcours raconté : chaque étape apparaît quand on arrive dessus (titre qui monte mot à mot, puis texte en fondu) -->
+<section id="parcours" class="parcours" aria-labelledby="titre-parcours">
+  <h2 id="titre-parcours" class="parcours-titre">Mon parcours</h2>
+  <ol class="etapes">
+    <li class="etape">
+      <p class="date">2018 – 2021</p>
+      <h3>Licence Sciences du Langage et Informatique</h3>
+      <p class="desc">La linguistique et l'informatique, étudiées ensemble dès le départ. <span class="todo">[À COMPLÉTER : ce que tu en retiens, en une phrase]</span></p>
+    </li>
+    <li class="etape">
+      <p class="date">2021 – 2023 · Sorbonne Université</p>
+      <h3>Master Langue et Informatique</h3>
+      <p class="desc">Spécialité NLP et IA. Mon mémoire : repérer les lieux d'Île-de-France dans 17 819 chansons, avec spaCy et une carte interactive.</p>
+    </li>
+    <li class="etape">
+      <p class="date">Avril – octobre 2023 · EDF R&amp;D</p>
+      <h3>Data Scientist NLP, en stage</h3>
+      <p class="desc">Un pipeline de conformité vocale : transcription avec Wav2Vec2 et Whisper fine-tunés, détection avec SBERT et des heuristiques. F1 moyen de 79 %, et un MVP en Streamlit.</p>
+    </li>
+    <li class="etape">
+      <p class="date">Juin 2024 – janvier 2025 · Carrefour, siège</p>
+      <h3>Coordinateur Data Management</h3>
+      <p class="desc">J'automatise en Python les flux de données promotionnelles : leur traitement ne prend plus qu'une demi-journée. Tableaux de bord Looker Studio pour la direction, et gouvernance des données promotionnelles.</p>
+    </li>
+    <li class="etape">
+      <p class="date">Juillet 2025 – janvier 2026 · Bergerat Rent (Caterpillar)</p>
+      <h3>Data Engineer</h3>
+      <p class="desc">Une chaîne Microsoft Fabric (PySpark, Dataflows, Lakehouse) sur les données télématiques de la flotte, des modèles Power BI présentés au directeur, et des scripts Python reliés à l'ERP et au CRM.</p>
+    </li>
+    <li class="etape">
+      <p class="date">Depuis juillet 2026</p>
+      <h3>Développeur IA et LLM</h3>
+      <p class="desc">Un agent IA qui répond aux voyageurs d'un client en gestion locative : RAG, function calling, cascade de 5 fournisseurs de LLM, 156 tests automatisés, déploiement sur Google Cloud.</p>
+    </li>
+    <li class="etape etape-fin">
+      <p class="date">Et maintenant</p>
+      <h3>Je cherche un poste en NLP, LLM ou data.</h3>
+      <p class="desc"><a href="https://github.com/Tiiiagooo">Voir mon GitHub</a> · <span class="todo">[À COMPLÉTER : liens LinkedIn et CV]</span></p>
+    </li>
+  </ol>
+  <p class="chantier">Site en construction : la démo de l'agent, mes projets et une analyse du marché de l'emploi data et IA arrivent bientôt.</p>
+</section>
 </main>
 
 <script src="js/intro.js"></script>
+<script src="js/parcours.js"></script>
 </body>
 </html>
