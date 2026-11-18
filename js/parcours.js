@@ -1,9 +1,10 @@
-/* Parcours raconté : chaque étape s'anime quand elle arrive à l'écran.
+/* Parcours raconté : chaque étape s'anime quand elle arrive à l'écran (les sections .apparait, elles, apparaissent en fondu).
    Le titre est découpé en mots (chaque mot monte, avec un petit décalage), puis la date et le texte apparaissent en fondu.
    Sans ce script, tout est simplement visible. */
 (function () {
   "use strict";
-  var etapes = document.querySelectorAll('.etape');
+  // Les étapes du parcours, et les sections qui apparaissent en fondu
+  var etapes = document.querySelectorAll('.etape, .apparait');
   if (!etapes.length) return;
 
   // Découpe chaque titre en mots : <span class="w"><span style="--i:n">mot</span></span>

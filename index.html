@@ -38,7 +38,12 @@
     <a class="nom" href="#accueil">Tiago de Carvalho Bene</a>
     <span class="nav-recherche"><span class="point" aria-hidden="true"></span>En recherche d'un poste</span>
   </div>
-  <button class="rejouer" id="rejouer" type="button">Rallumer l'écran</button>
+  <div class="nav-droite">
+    <a href="#parcours">Parcours</a>
+    <a href="#projets">Projets</a>
+    <a href="#contact">Contact</a>
+    <button class="rejouer" id="rejouer" type="button">Rallumer l'écran</button>
+  </div>
 </header>
 
 <main>
@@ -68,7 +73,7 @@
     <li class="etape">
       <p class="date">2018 – 2021 · Sorbonne Université</p>
       <h3>Licence Sciences du Langage et Informatique</h3>
-      <p class="desc">La linguistique et l'informatique, étudiées ensemble dès le départ. <span class="todo">[À COMPLÉTER : ce que tu en retiens, en une phrase]</span></p>
+      <p class="desc">La linguistique et l'informatique, étudiées ensemble dès le départ. <!-- [À COMPLÉTER] ce que tu retiens de la Licence, en une phrase --></p>
     </li>
     <li class="etape">
       <p class="date">2021 – 2023 · Sorbonne Université</p>
@@ -101,9 +106,269 @@
       <p class="desc">Disponible rapidement, basé à Paris. <a href="https://www.linkedin.com/in/tiago-andre-nlp">LinkedIn</a> · <a href="https://github.com/Tiiiagooo">GitHub</a></p>
     </li>
   </ol>
-  <p class="chantier">Site en construction : la démo de l'agent, mes projets et une analyse du marché de l'emploi data et IA arrivent bientôt.</p>
+</section>
+
+<section id="projets" class="projets-intro apparait">
+  <div class="projet-inner">
+    <h2 class="titre-section">Projets</h2>
+    <p class="proj-resume">Chaque projet est présenté en trois temps, la grille d'analyse que j'ai apprise en Master.</p>
+    <div class="legende">
+      <div><span class="leg-num">1</span><p><b>Données</b>D'où elles viennent, leur volume, ce qui peut être montré.</p></div>
+      <div><span class="leg-num">2</span><p><b>Méthode</b>Les modèles, les outils et les choix techniques.</p></div>
+      <div><span class="leg-num">3</span><p><b>Tâche</b>Ce que le système doit faire, et les résultats obtenus.</p></div>
+    </div>
+    <ol class="sommaire">
+      <li><a href="#agent"><span class="som-num">01</span><span class="som-titre">Agent IA de gestion locative</span><span class="som-domaine">LLM</span><span class="statut en-cours">En cours</span></a></li>
+      <li><a href="#marche"><span class="som-num">02</span><span class="som-titre">Analyse du marché de l'emploi data et IA</span><span class="som-domaine">Data · BI · SQL</span><span class="statut en-cours">En cours</span></a></li>
+      <li><a href="#kriolu"><span class="som-num">03</span><span class="som-titre">Pré-annotation du kriolu (capverdien)</span><span class="som-domaine">NLP</span><span class="statut en-cours">En cours</span></a></li>
+      <li><a href="#memoire"><span class="som-num">04</span><span class="som-titre">Les lieux de Paris dans la chanson</span><span class="som-domaine">NLP</span><span class="statut termine">Terminé</span></a></li>
+      <li><a href="#paroles"><span class="som-num">05</span><span class="som-titre">Génération de paroles</span><span class="som-domaine">LLM</span><span class="statut en-cours">En cours</span></a></li>
+      <li><a href="#autres"><span class="som-num">06</span><span class="som-titre">Autres projets</span><span class="som-domaine">Web · Data</span><span></span></a></li>
+    </ol>
+  </div>
+</section>
+
+<section id="agent" class="projet apparait">
+  <div class="projet-inner">
+    <div class="proj-tete">
+      <p class="proj-meta"><span class="proj-num">01</span><span class="proj-domaine">LLM</span><span class="statut en-cours">En cours</span></p>
+      <h3>Agent IA de gestion locative</h3>
+      <p class="proj-resume">Un assistant qui répond aux voyageurs d'un client en gestion locative, sur WhatsApp et Airbnb. Une démo publique, sur des données fictives, arrive bientôt ici.</p>
+    </div>
+    <div class="dmt">
+      <div class="col">
+        <p class="col-label">1 · Données</p>
+        <ul>
+          <li>Messages des voyageurs, reçus par WhatsApp et Airbnb.</li>
+          <li>Réservations, lues en temps réel par l'API d'un channel manager.</li>
+          <li>FAQ du logement et consignes, indexées pour la recherche.</li>
+          <li>Les données du client ne sont pas publiées.</li>
+        </ul>
+      </div>
+      <div class="col">
+        <p class="col-label">2 · Méthode</p>
+        <ul>
+          <li>LangChain et une API Flask.</li>
+          <li>Function calling pour consulter les réservations.</li>
+          <li>Double RAG (embeddings Ollama) : la FAQ du logement, et seulement les consignes utiles à ce moment de la conversation.</li>
+          <li>Cascade de secours codée à la main : 6 niveaux, 5 fournisseurs de LLM, Claude Sonnet en principal.</li>
+          <li>156 tests pytest dans GitHub Actions, à chaque push.</li>
+          <li>Google Cloud : Docker Compose, Compute Engine, Cloud Run en service privé, Secret Manager, plafond de dépenses.</li>
+        </ul>
+      </div>
+      <div class="col">
+        <p class="col-label">3 · Tâche</p>
+        <ul>
+          <li>Répondre aux questions des voyageurs sur leur séjour, à partir de leur réservation.</li>
+          <li>Évaluation sur 41 scénarios rejoués avec le vrai agent : contrôles automatiques et annotation humaine sur 4 critères.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="demo-apercu">
+      <div class="demo-tete"><span>Exemple de conversation · données fictives</span><span class="statut en-cours">Démo bientôt en ligne</span></div>
+      <div class="demo-fil">
+        <p class="bulle moi">Bonjour, est-ce que je peux arriver vers 22 h ?</p>
+        <div class="bulle-agent">
+          <p class="outils"><span>Réservation consultée · function calling</span><span>FAQ du logement · RAG</span></p>
+          <p class="bulle">Bonjour ! Votre réservation du 12 au 15 décembre prévoit une arrivée autonome : la boîte à clés est accessible à toute heure, et le code vous sera envoyé la veille.</p>
+        </div>
+      </div>
+    </div>
+    <div class="actions"><a class="btn" href="https://github.com/Tiiiagooo/agent-ia-publique">Présentation sur GitHub</a></div>
+  </div>
+</section>
+
+<section id="marche" class="projet sombre apparait">
+  <div class="projet-inner">
+    <div class="proj-tete">
+      <p class="proj-meta"><span class="proj-num">02</span><span class="proj-domaine">Data · BI · SQL</span><span class="statut en-cours">En cours</span></p>
+      <h3>Ce que les recruteurs data et IA demandent vraiment</h3>
+      <p class="proj-resume">Mon projet BI : une analyse du marché de l'emploi calculée à partir des offres que collecte mon outil JobScout. Les résultats arrivent bientôt ; seules des statistiques agrégées seront publiées, jamais le texte des offres.</p>
+    </div>
+    <div class="dmt">
+      <div class="col">
+        <p class="col-label">1 · Données</p>
+        <ul>
+          <li>Plusieurs milliers d'offres d'emploi data et IA en France, collectées par JobScout.</li>
+          <li>Le texte des offres appartient aux sites et aux entreprises : il n'est pas republié.</li>
+        </ul>
+      </div>
+      <div class="col">
+        <p class="col-label">2 · Méthode</p>
+        <ul>
+          <li>Export de la base SQLite vers PostgreSQL.</li>
+          <li>Transformations en SQL : CTE, fonctions de fenêtre.</li>
+          <li>Modèle en étoile, tableau de bord Power BI.</li>
+          <li>Dictionnaire de technologies avec alias (Spark et Apache Spark, NLP et TAL).</li>
+        </ul>
+      </div>
+      <div class="col">
+        <p class="col-label">3 · Tâche</p>
+        <ul>
+          <li>Quels outils sont les plus demandés, et comment ça évolue ?</li>
+          <li>Qu'exige-t-on vraiment d'un poste « junior » ?</li>
+          <li>L'en-tête de l'annonce dit-il la même chose que son texte ?</li>
+          <li>Comment les offres se répartissent par secteur et par région ?</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kriolu" class="projet alt apparait">
+  <div class="projet-inner">
+    <div class="proj-tete">
+      <p class="proj-meta"><span class="proj-num">03</span><span class="proj-domaine">NLP · langue peu dotée</span><span class="statut en-cours">En cours</span></p>
+      <h3>Pré-annotation du kriolu (capverdien)</h3>
+      <p class="proj-resume">Un outil Python qui pré-remplit la glose et la catégorie grammaticale de fichiers ELAN, que le linguiste n'a plus qu'à corriger. En collaboration avec le LLACAN (CNRS, INALCO).</p>
+    </div>
+    <div class="dmt">
+      <div class="col">
+        <p class="col-label">1 · Données</p>
+        <ul>
+          <li>Un corpus de capverdien (kriolu) annoté par les linguistes du LLACAN, en fichiers ELAN.</li>
+          <li>Données confidentielles : traitées uniquement en local.</li>
+        </ul>
+      </div>
+      <div class="col">
+        <p class="col-label">2 · Méthode</p>
+        <ul>
+          <li>Pour chaque mot, l'annotation la plus fréquente, puis une désambiguïsation par le contexte.</li>
+          <li>Un seuil de confiance (80 %) : en dessous, l'outil signale l'annotation au linguiste.</li>
+          <li>Évaluation sur des textes jamais vus, et un rapport de résultats pour les linguistes.</li>
+        </ul>
+      </div>
+      <div class="col">
+        <p class="col-label">3 · Tâche</p>
+        <ul>
+          <li>Pré-remplir la glose et la catégorie grammaticale de chaque mot.</li>
+          <li>53 à 72 % de gloses et catégories justes, selon le fichier.</li>
+          <li>84 à 88 % des erreurs signalées automatiquement.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="memoire" class="projet apparait">
+  <div class="projet-inner">
+    <div class="proj-tete">
+      <p class="proj-meta"><span class="proj-num">04</span><span class="proj-domaine">NLP · mémoire de Master</span><span class="statut termine">Terminé</span></p>
+      <h3>Les lieux de Paris dans la chanson</h3>
+      <p class="proj-resume">Où se situent les lieux d'Île-de-France cités dans les chansons françaises, et comment cette géographie change-t-elle dans le temps ?</p>
+    </div>
+    <p class="pipeline" role="img" aria-label="Schéma de la méthode : paroles, true casing, entités nommées, lieux, carte"><span class="etape-pipe">Paroles</span><span class="fleche" aria-hidden="true">→</span><span class="etape-pipe">True casing (GLAFF)</span><span class="fleche" aria-hidden="true">→</span><span class="etape-pipe">Entités nommées (spaCy)</span><span class="fleche" aria-hidden="true">→</span><span class="etape-pipe">Lieux d'Île-de-France</span><span class="fleche" aria-hidden="true">→</span><span class="etape-pipe fin">Carte Plotly</span></p>
+    <div class="dmt">
+      <div class="col">
+        <p class="col-label">1 · Données</p>
+        <ul>
+          <li>17 819 chansons françaises (XXe et XXIe siècles) de 974 artistes.</li>
+          <li>8 507 lieux d'Île-de-France.</li>
+          <li>Le lexique GLAFF.</li>
+        </ul>
+      </div>
+      <div class="col">
+        <p class="col-label">2 · Méthode</p>
+        <ul>
+          <li>Reconnaissance d'entités nommées avec spaCy : 3 modèles comparés.</li>
+          <li>True casing avec le lexique GLAFF (précision ≈ 99,8 %).</li>
+          <li>Carte interactive Plotly.</li>
+          <li>Code repris en 2026 en package Python.</li>
+        </ul>
+      </div>
+      <div class="col">
+        <p class="col-label">3 · Tâche</p>
+        <ul>
+          <li>Repérer les lieux d'Île-de-France cités dans les chansons, et suivre leur évolution.</li>
+          <li>Résultat : un léger glissement vers la banlieue, surtout entre 2001 et 2019.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="actions"><a class="btn" href="https://github.com/Tiiiagooo/Memoire">Code sur GitHub</a></div>
+  </div>
+</section>
+
+<section id="paroles" class="projet alt apparait">
+  <div class="projet-inner">
+    <div class="proj-tete">
+      <p class="proj-meta"><span class="proj-num">05</span><span class="proj-domaine">LLM · fine-tuning</span><span class="statut en-cours">En cours</span></p>
+      <h3>Génération de paroles</h3>
+      <p class="proj-resume">Un GPT-2 français entraîné à écrire des paroles de chanson. Projet de recherche non commercial : seuls la méthode et les résultats sont présentés, aucune parole n'est publiée ici.</p>
+    </div>
+    <p class="pipeline" role="img" aria-label="Schéma : corpus, fine-tuning de GPT-2, adaptateurs LoRA"><span class="etape-pipe">38 000 chansons</span><span class="fleche" aria-hidden="true">→</span><span class="etape-pipe">GPT-2 français, fine-tuning complet</span><span class="fleche" aria-hidden="true">→</span><span class="etape-pipe fin">Adaptateurs LoRA par artiste</span></p>
+    <div class="dmt">
+      <div class="col">
+        <p class="col-label">1 · Données</p>
+        <ul>
+          <li>Environ 38 000 chansons françaises de plus de 1 200 artistes.</li>
+          <li>Un format enrichi, avec des balises de syllabes et de rimes.</li>
+          <li>Les paroles ne sont pas redistribuées : seul le code est public.</li>
+        </ul>
+      </div>
+      <div class="col">
+        <p class="col-label">2 · Méthode</p>
+        <ul>
+          <li>Fine-tuning complet d'un GPT-2 français (PyTorch, Hugging Face Transformers).</li>
+          <li>Recherche des paramètres de décodage : temperature, top-k, top-p, repetition penalty.</li>
+          <li>Adaptateurs LoRA, un par artiste (en cours).</li>
+        </ul>
+      </div>
+      <div class="col">
+        <p class="col-label">3 · Tâche</p>
+        <ul>
+          <li>Générer des paroles de chanson en français, puis dans le style d'un artiste donné.</li>
+          <li>Perplexité de validation de 5,35, sur le format enrichi.</li>
+          <li>Évaluation qualitative des textes générés.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="actions"><a class="btn" href="https://github.com/Tiiiagooo/music_lyrics_generation">Code sur GitHub</a></div>
+  </div>
+</section>
+
+<section id="autres" class="projet apparait">
+  <div class="projet-inner">
+    <div class="proj-tete"><p class="proj-meta"><span class="proj-num">06</span></p><h3>Autres projets</h3></div>
+    <div class="minis">
+      <article class="mini">
+        <div class="mini-tete"><h4>JobScout et générateur de CV</h4><span class="statut en-cours">En cours</span></div>
+        <p><b>Données</b>Plusieurs milliers d'offres d'emploi, stockées en SQLite ; mon profil, décrit dans un fichier de faits.</p>
+        <p><b>Méthode</b>Next.js ; score par couverture des technologies demandées, malus quand une technologie exigée manque au profil. Générateur en Python : repérage des compétences par regex, compilation LaTeX sur une page.</p>
+        <p><b>Tâche</b>Noter les offres, repérer ce qui manque à mon profil, générer un CV adapté à chaque offre.</p>
+      </article>
+      <article class="mini">
+        <div class="mini-tete"><h4>Application de jeu de rôle avec narration vocale</h4><span class="statut termine">Terminé</span></div>
+        <p><b>Données</b>Une base MySQL : chaque joueur suit ses statistiques.</p>
+        <p><b>Méthode</b>Flask, HTML, CSS, JavaScript ; SQLAlchemy ; voix de synthèse avec Coqui TTS.</p>
+        <p><b>Tâche</b>Animer des parties entre amis : le meneur déclenche la narration en voix de synthèse.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="journal" class="projet alt apparait">
+  <div class="projet-inner">
+    <h2 class="titre-section">Journal des avancées</h2>
+    <ol class="journal">
+      <li><span class="date">Novembre 2026</span><span>JobScout repère les technologies exigées par une offre et ce qui manque au profil.</span></li>
+      <li><span class="date">Novembre 2026</span><span>Première version de ce site.</span></li>
+      <li><span class="date">Juillet 2026</span><span>Début de l'agent IA pour un client en gestion locative.</span></li>
+    </ol>
+  </div>
 </section>
 </main>
+
+<footer id="contact" class="pied">
+  <div class="pied-inner">
+    <p class="pied-titre">Me contacter</p>
+    <div class="actions">
+      <!-- [À COMPLÉTER] bouton « Télécharger mon CV » quand le PDF sans téléphone sera dans assets/ -->
+      <a class="btn btn-clair" href="https://www.linkedin.com/in/tiago-andre-nlp">LinkedIn</a>
+      <a class="btn btn-contour" href="https://github.com/Tiiiagooo">GitHub</a>
+    </div>
+  </div>
+</footer>
+
 
 <script src="js/intro.js"></script>
 <script src="js/parcours.js"></script>
