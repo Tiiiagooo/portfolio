@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tiago de Carvalho Bene · linguiste et informaticien</title>
+<meta name="description" content="Tiago de Carvalho Bene, linguiste et informaticien : NLP, LLM, data engineering.">
+<meta name="theme-color" content="#0b0d12">
+<!-- Polices : Space Grotesk (titres), Inter (texte), JetBrains Mono (écran de démarrage). Hors ligne : polices système. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<!-- Sans JavaScript, l'intro ne s'affiche pas et la page est visible tout de suite -->
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<!-- Intro : l'ordinateur s'allume, démarre, puis on zoome dans l'écran, qui devient la page -->
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="poste" id="poste">
+    <div class="moniteur" id="moniteur">
+      <div class="ecran" id="ecran">
+        <div class="balayage" id="balayage"></div>
+        <pre class="boot" id="boot"></pre>
+        <div class="clair" id="clair"></div>
+      </div>
+      <span class="voyant" id="voyant"></span>
+    </div>
+    <div class="pied-col"></div>
+    <div class="pied-socle"></div>
+  </div>
+</div>
+<button class="passer" id="passer" type="button">Passer l'intro</button>
+
+<header class="nav">
+  <a class="nom" href="#accueil">Tiago de Carvalho Bene</a>
+  <button class="rejouer" id="rejouer" type="button">Rallumer l'écran</button>
+</header>
+
+<main id="accueil" class="hero">
+  <p class="sur-titre" style="--i:0">NLP · LLM · Data engineering</p>
+  <h1 style="--i:1">Linguiste et informaticien.</h1>
+  <p class="chapo" style="--i:2">Diplômé du Master Langue et Informatique de Sorbonne Université. J'ai construit un outil d'annotation pour un laboratoire du CNRS, un pipeline NLP chez EDF R&amp;D, des chaînes de données chez Bergerat Rent (Caterpillar), et je développe aujourd'hui un agent LLM pour un client en gestion locative.</p>
+
+  <ul class="preuves" style="--i:3" aria-label="Quelques résultats">
+    <li><b>79 %</b><span>de F1 moyen, détection de non-conformités (EDF R&amp;D)</span></li>
+    <li><b>156</b><span>tests automatisés sur l'agent IA</span></li>
+    <li><b>17 819</b><span>chansons analysées pour mon mémoire</span></li>
+  </ul>
+
+  <div class="actions" style="--i:4">
+    <a class="btn" href="https://github.com/Tiiiagooo/agent-ia-publique">L'agent IA en détail</a>
+    <a class="btn btn-2" href="https://github.com/Tiiiagooo">Mon GitHub</a>
+    <!-- [À COMPLÉTER] liens du CV en PDF et de LinkedIn -->
+  </div>
+
+  <p class="chantier" style="--i:5">Site en construction : la démo de l'agent, mes projets et une analyse du marché de l'emploi data et IA arrivent bientôt.</p>
+</main>
+
+<script src="js/intro.js"></script>
+</body>
+</html>
