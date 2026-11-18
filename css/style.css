@@ -129,9 +129,9 @@ h1 { font: 700 clamp(2.6rem, 7vw, 4.6rem)/1.04 var(--titre); letter-spacing: -.0
   transition-delay: calc(var(--i, 0) * 70ms);
 }
 
-/* Filet de sécurité : si le script ne tourne pas, l'intro s'efface et la page apparaît quand même après 4,5 s */
-.js:not(.pret) .intro, .js:not(.pret) .passer { animation: secours-intro .3s 4.5s forwards; }
-.js:not(.pret) .hero > *, .js:not(.pret) .nav { animation: secours-page .5s 4.5s forwards; }
+/* Filet de sécurité : si le script ne tourne pas, l'intro s'efface et la page apparaît quand même après 8 s (l'intro dure environ 4 s) */
+.js:not(.pret) .intro, .js:not(.pret) .passer { animation: secours-intro .3s 8s forwards; }
+.js:not(.pret) .hero > *, .js:not(.pret) .nav { animation: secours-page .5s 8s forwards; }
 @keyframes secours-intro { to { opacity: 0; visibility: hidden; } }
 @keyframes secours-page { to { opacity: 1; transform: none; } }
 
