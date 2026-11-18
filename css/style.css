@@ -123,11 +123,16 @@ h1 { font: 700 clamp(2.6rem, 7vw, 4.6rem)/1.04 var(--titre); letter-spacing: -.0
 
 /* « Je cherche un poste » : visible dès l'accroche */
 .recherche {
-  align-self: flex-start; display: inline-flex; align-items: center; gap: 10px;
-  padding: 8px 14px; border-radius: 999px; background: #E6F4EC; color: #1D5A3A;
-  font-size: .95rem; font-weight: 600;
+  align-self: flex-start; display: inline-flex; align-items: center; gap: 12px;
+  padding: 12px 20px; border-radius: 999px; background: #E6F4EC; color: #1D5A3A;
+  font-size: clamp(1rem, 2.4vw, 1.2rem); font-weight: 600;
 }
-.recherche .point { width: 8px; height: 8px; border-radius: 50%; background: #22A061; box-shadow: 0 0 0 4px rgba(34, 160, 97, .18); }
+.nav-gauche { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; }
+.nav-recherche {
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px;
+  background: #E6F4EC; color: #1D5A3A; font-size: .85rem; font-weight: 600;
+}
+.recherche .point, .nav-recherche .point { width: 8px; height: 8px; border-radius: 50%; background: #22A061; box-shadow: 0 0 0 4px rgba(34, 160, 97, .18); }
 .todo { color: #8A4B08; }
 
 /* ---------- Parcours raconté ---------- */
