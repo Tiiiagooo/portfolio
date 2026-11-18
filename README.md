@@ -15,6 +15,7 @@ Double-cliquer sur `index.html` : pas de serveur ni de compilation (HTML, CSS et
 | `index.html` | contenu et structure de la page |
 | `css/style.css` | couleurs, typographie, mise en page, intro |
 | `js/intro.js` | intro de l'ordinateur (durée réglable avec `LENTEUR`) |
+| `js/theme.js` | sélecteur des trois styles (sombre, clair, éditorial) |
 | `js/parcours.js` | animation du parcours et des sections au défilement |
 | `assets/` | CV en PDF (sans numéro de téléphone) |
 

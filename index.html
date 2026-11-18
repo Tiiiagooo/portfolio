@@ -1,18 +1,22 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-theme="sombre">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Tiago de Carvalho Bene · informaticien et linguiste</title>
 <meta name="description" content="Tiago de Carvalho Bene, informaticien et linguiste : NLP, LLM, data engineering.">
 <meta name="theme-color" content="#0b0d12">
-<!-- Polices : Space Grotesk (titres), Inter (texte), JetBrains Mono (écran de démarrage). Hors ligne : polices système. -->
+<!-- Polices : IBM Plex Sans (texte), IBM Plex Mono (dates, étiquettes, écran de démarrage), Source Serif 4 (titres du style « éditorial »). Hors ligne : polices système. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600;700&family=Source+Serif+4:wght@600;700&display=swap">
 <link rel="stylesheet" href="css/style.css">
 <!-- Sans JavaScript, l'intro ne s'affiche pas et la page est visible tout de suite -->
-<script>document.documentElement.classList.add('js');</script>
+<script>
+document.documentElement.classList.add('js');
+// Style choisi lors d'une visite précédente (voir js/theme.js)
+try { var t = localStorage.getItem('theme'); if (t === 'clair' || t === 'editorial') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
 </head>
 <body>
 
@@ -42,6 +46,11 @@
     <a href="#parcours">Parcours</a>
     <a href="#projets">Projets</a>
     <a href="#contact">Contact</a>
+    <div class="themes" role="group" aria-label="Style du site">
+      <button type="button" data-theme-choix="sombre" aria-pressed="true">Sombre</button>
+      <button type="button" data-theme-choix="clair" aria-pressed="false">Clair</button>
+      <button type="button" data-theme-choix="editorial" aria-pressed="false">Éditorial</button>
+    </div>
     <button class="rejouer" id="rejouer" type="button">Rallumer l'écran</button>
   </div>
 </header>
@@ -373,5 +382,6 @@
 
 <script src="js/intro.js"></script>
 <script src="js/parcours.js"></script>
+<script src="js/theme.js"></script>
 </body>
 </html>
