@@ -103,13 +103,6 @@ a { color: var(--bleu); }
 .sur-titre { font-size: .9rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--bleu); }
 h1 { font: 700 clamp(2.6rem, 7vw, 4.6rem)/1.04 var(--titre); letter-spacing: -.015em; }
 .chapo { font-size: clamp(1.05rem, 2.2vw, 1.3rem); color: var(--texte); max-width: 62ch; }
-.preuves { list-style: none; display: flex; flex-wrap: wrap; gap: 12px; }
-.preuves li {
-  flex: 1 1 220px; padding: 18px 20px; background: #fff; border: 1px solid var(--ligne); border-radius: 14px;
-  display: flex; flex-direction: column; gap: 2px;
-}
-.preuves b { font: 700 1.9rem var(--titre); }
-.preuves span { font-size: .9rem; color: var(--discret); }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .btn {
   display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px; border-radius: 12px;
@@ -289,50 +282,7 @@ h1 { font: 700 clamp(2.6rem, 7vw, 4.6rem)/1.04 var(--titre); letter-spacing: -.0
   .anime .etape .date, .anime .etape .desc { transform: none; }
   .anime .apparait { transform: none; }
 }
-/* ---------- Trois styles au choix : html[data-theme="sombre|clair|editorial"] (sélecteur dans la barre du haut, js/theme.js) ---------- */
-
-/* Style « sombre » */
-html[data-theme="sombre"] {--fond:#0B1220; --encre:#E8EDF7; --texte:#B7C2D6; --discret:#8C99B0; --ligne:#1E2A42; --bleu:#7AA2FF; --bleu-fonce:#A9C1FF; --titre:"IBM Plex Sans",sans-serif; --sans:"IBM Plex Sans",sans-serif; --mono:"IBM Plex Mono",monospace; }
-html[data-theme="sombre"], html[data-theme="sombre"] body {background: var(--fond); }
-html[data-theme="sombre"] .date, html[data-theme="sombre"] .proj-num, html[data-theme="sombre"] .proj-domaine, html[data-theme="sombre"] .col-label, html[data-theme="sombre"] .statut, html[data-theme="sombre"] .som-num, html[data-theme="sombre"] .leg-num, html[data-theme="sombre"] .nav-recherche, html[data-theme="sombre"] .recherche, html[data-theme="sombre"] .som-domaine, html[data-theme="sombre"] .outils span, html[data-theme="sombre"] .etape-pipe {font-family: var(--mono) !important; letter-spacing: 0 !important; }
-html[data-theme="sombre"] .date, html[data-theme="sombre"] .proj-domaine, html[data-theme="sombre"] .col-label {font-size: .82rem; }
-html[data-theme="sombre"] h1, html[data-theme="sombre"] .titre-section, html[data-theme="sombre"] .parcours-titre, html[data-theme="sombre"] .etape h3, html[data-theme="sombre"] .proj-tete h3 {font-weight: 700; letter-spacing: -.02em; }
-html[data-theme="sombre"] .rejouer, html[data-theme="sombre"] .btn-2 {background: #111A2E !important; color: var(--encre) !important; border-color: #2A3756 !important; }
-html[data-theme="sombre"] .btn {background: var(--bleu); color: #0B1220; }
-html[data-theme="sombre"] .btn:hover {background: var(--bleu-fonce); }
-html[data-theme="sombre"] .preuves li, html[data-theme="sombre"] .col, html[data-theme="sombre"] .mini, html[data-theme="sombre"] .demo-apercu, html[data-theme="sombre"] .bulle {background: #111A2E !important; border-color: var(--ligne) !important; }
-html[data-theme="sombre"] .projet.alt .col, html[data-theme="sombre"] .legende {background: #0E1628 !important; }
-html[data-theme="sombre"] .projet, html[data-theme="sombre"] .projets-intro {background: var(--fond); border-color: var(--ligne); }
-html[data-theme="sombre"] .projet.alt, html[data-theme="sombre"] .projets-intro {background: #0E1628; }
-html[data-theme="sombre"] .projet.sombre {background: #070C17; }
-html[data-theme="sombre"] .leg-num, html[data-theme="sombre"] .col-label, html[data-theme="sombre"] .outils span, html[data-theme="sombre"] .statut.termine {background: #1B2945 !important; color: #C9D7FB !important; }
-html[data-theme="sombre"] .statut.en-cours {background: #3A2A10 !important; color: #F5C97A !important; }
-html[data-theme="sombre"] .recherche, html[data-theme="sombre"] .nav-recherche {background: #10301F !important; color: #8FEABB !important; }
-html[data-theme="sombre"] .etape::before {border-color: #3A4766; }
-html[data-theme="sombre"] .etapes::before {background: var(--ligne); }
-html[data-theme="sombre"] .pipeline {background: #0E1628; }
-html[data-theme="sombre"] .etape-pipe {background: #111A2E; border-color: #2A3756; }
-html[data-theme="sombre"] .etape-pipe.fin {color: #0B1220; }
-html[data-theme="sombre"] .bulle.moi {background: var(--bleu) !important; color: #0B1220 !important; }
-html[data-theme="sombre"] .demo-tete {background: #0E1628; border-color: var(--ligne); }
-html[data-theme="sombre"] .demo-fil {background: #0B1220; }
-html[data-theme="sombre"] .mini b {color: #C9D7FB; }
-html[data-theme="sombre"] .journal {border-color: #2A3756; }
-
-/* Style « clair » */
-html[data-theme="clair"] {--fond:#FFFFFF; --encre:#0F172A; --texte:#334155; --discret:#64748B; --ligne:#E2E8F0; --bleu:#1D4ED8; --bleu-fonce:#1E40AF; --titre:"IBM Plex Sans",sans-serif; --sans:"IBM Plex Sans",sans-serif; --mono:"IBM Plex Mono",monospace; }
-html[data-theme="clair"], html[data-theme="clair"] body {background: #fff; }
-html[data-theme="clair"] .date, html[data-theme="clair"] .proj-num, html[data-theme="clair"] .proj-domaine, html[data-theme="clair"] .col-label, html[data-theme="clair"] .statut, html[data-theme="clair"] .som-num, html[data-theme="clair"] .leg-num, html[data-theme="clair"] .nav-recherche, html[data-theme="clair"] .recherche, html[data-theme="clair"] .som-domaine, html[data-theme="clair"] .outils span, html[data-theme="clair"] .etape-pipe {font-family: var(--mono) !important; letter-spacing: 0 !important; }
-html[data-theme="clair"] .date, html[data-theme="clair"] .proj-domaine, html[data-theme="clair"] .col-label {font-size: .82rem; }
-html[data-theme="clair"] h1, html[data-theme="clair"] .titre-section, html[data-theme="clair"] .parcours-titre, html[data-theme="clair"] .etape h3, html[data-theme="clair"] .proj-tete h3 {font-weight: 700; letter-spacing: -.02em; }
-html[data-theme="clair"] .projet, html[data-theme="clair"] .projets-intro {background: #fff; }
-html[data-theme="clair"] .projet.alt, html[data-theme="clair"] .projets-intro {background: #F4F6F9; }
-html[data-theme="clair"] .projet.alt .col {background: #fff; }
-html[data-theme="clair"] .legende {background: #F4F6F9; }
-html[data-theme="clair"] .preuves li, html[data-theme="clair"] .col, html[data-theme="clair"] .mini {border-color: #E2E8F0; }
-html[data-theme="clair"] .projet.sombre {background: #0F172A; }
-html[data-theme="clair"] .btn-2, html[data-theme="clair"] .rejouer {border-color: #CBD5E1; }
-html[data-theme="clair"] .etape::before {border-color: #CBD5E1; background: #fff; }
+/* ---------- Style « éditorial » : titres en Source Serif, texte en IBM Plex Sans, étiquettes en IBM Plex Mono, bleu encre ---------- */
 
 /* Style « editorial » */
 html[data-theme="editorial"] {--fond:#FFFFFF; --encre:#111827; --texte:#374151; --discret:#6B7280; --ligne:#E5E7EB; --bleu:#1E3A8A; --bleu-fonce:#172554; --titre:"Source Serif 4",Georgia,serif; --sans:"IBM Plex Sans",sans-serif; --mono:"IBM Plex Mono",monospace; }
@@ -340,7 +290,7 @@ html[data-theme="editorial"], html[data-theme="editorial"] body {background: #ff
 html[data-theme="editorial"] .date, html[data-theme="editorial"] .proj-num, html[data-theme="editorial"] .proj-domaine, html[data-theme="editorial"] .col-label, html[data-theme="editorial"] .statut, html[data-theme="editorial"] .som-num, html[data-theme="editorial"] .leg-num, html[data-theme="editorial"] .nav-recherche, html[data-theme="editorial"] .recherche, html[data-theme="editorial"] .som-domaine, html[data-theme="editorial"] .outils span, html[data-theme="editorial"] .etape-pipe {font-family: var(--mono) !important; letter-spacing: 0 !important; }
 html[data-theme="editorial"] .date, html[data-theme="editorial"] .proj-domaine, html[data-theme="editorial"] .col-label {font-size: .82rem; }
 html[data-theme="editorial"] h1 {font-weight: 700; letter-spacing: -.01em; }
-html[data-theme="editorial"] .etape h3, html[data-theme="editorial"] .proj-tete h3, html[data-theme="editorial"] .titre-section, html[data-theme="editorial"] .parcours-titre, html[data-theme="editorial"] .mini h4, html[data-theme="editorial"] .preuves b {font-weight: 600; }
+html[data-theme="editorial"] .etape h3, html[data-theme="editorial"] .proj-tete h3, html[data-theme="editorial"] .titre-section, html[data-theme="editorial"] .parcours-titre, html[data-theme="editorial"] .mini h4 {font-weight: 600; }
 html[data-theme="editorial"] .projet, html[data-theme="editorial"] .projets-intro {background: #fff; }
 html[data-theme="editorial"] .projet.alt, html[data-theme="editorial"] .projets-intro {background: #F7F7F8; }
 html[data-theme="editorial"] .projet.alt .col {background: #fff; }
@@ -348,12 +298,3 @@ html[data-theme="editorial"] .legende {background: #F7F7F8; }
 html[data-theme="editorial"] .projet.sombre {background: #111827; }
 html[data-theme="editorial"] .etape::before {background: #fff; }
 
-/* Sélecteur de style (barre du haut) */
-.themes { display: none; }
-.js .themes { display: inline-flex; border: 1px solid var(--ligne); border-radius: 10px; padding: 3px; gap: 2px; }
-.themes button {
-  min-height: 38px; padding: 0 12px; border: 0; border-radius: 7px; cursor: pointer;
-  font: 500 .85rem var(--sans); color: var(--texte); background: transparent;
-}
-.themes button:hover { color: var(--encre); }
-.themes button[aria-pressed="true"] { background: var(--bleu); color: var(--fond); }

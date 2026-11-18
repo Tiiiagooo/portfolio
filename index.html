@@ -1,22 +1,18 @@
 <!doctype html>
-<html lang="fr" data-theme="sombre">
+<html lang="fr" data-theme="editorial">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Tiago de Carvalho Bene · informaticien et linguiste</title>
 <meta name="description" content="Tiago de Carvalho Bene, informaticien et linguiste : NLP, LLM, data engineering.">
 <meta name="theme-color" content="#0b0d12">
-<!-- Polices : IBM Plex Sans (texte), IBM Plex Mono (dates, étiquettes, écran de démarrage), Source Serif 4 (titres du style « éditorial »). Hors ligne : polices système. -->
+<!-- Polices : Source Serif 4 (titres), IBM Plex Sans (texte), IBM Plex Mono (dates, étiquettes, écran de démarrage). Hors ligne : polices système. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600;700&family=Source+Serif+4:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:wght@600;700&display=swap">
 <link rel="stylesheet" href="css/style.css">
 <!-- Sans JavaScript, l'intro ne s'affiche pas et la page est visible tout de suite -->
-<script>
-document.documentElement.classList.add('js');
-// Style choisi lors d'une visite précédente (voir js/theme.js)
-try { var t = localStorage.getItem('theme'); if (t === 'clair' || t === 'editorial') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
-</script>
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
@@ -46,11 +42,6 @@ try { var t = localStorage.getItem('theme'); if (t === 'clair' || t === 'editori
     <a href="#parcours">Parcours</a>
     <a href="#projets">Projets</a>
     <a href="#contact">Contact</a>
-    <div class="themes" role="group" aria-label="Style du site">
-      <button type="button" data-theme-choix="sombre" aria-pressed="true">Sombre</button>
-      <button type="button" data-theme-choix="clair" aria-pressed="false">Clair</button>
-      <button type="button" data-theme-choix="editorial" aria-pressed="false">Éditorial</button>
-    </div>
     <button class="rejouer" id="rejouer" type="button">Rallumer l'écran</button>
   </div>
 </header>
@@ -60,12 +51,6 @@ try { var t = localStorage.getItem('theme'); if (t === 'clair' || t === 'editori
   <p class="recherche" style="--i:0"><span class="point" aria-hidden="true"></span>Je cherche un poste en NLP, LLM ou data · disponible rapidement</p>
   <h1 style="--i:1">Informaticien et linguiste.</h1>
   <p class="chapo" style="--i:2">Diplômé du Master Langue et Informatique de Sorbonne Université. J'ai construit un outil d'annotation pour un laboratoire du CNRS, un pipeline NLP chez EDF R&amp;D, des chaînes de données chez Bergerat Rent (Caterpillar), et je développe aujourd'hui un agent LLM pour un client en gestion locative.</p>
-
-  <ul class="preuves" style="--i:3" aria-label="Quelques résultats">
-    <li><b>84 à 88 %</b><span>des erreurs signalées automatiquement par mon outil d'annotation du kriolu (LLACAN, CNRS)</span></li>
-    <li><b>½ journée</b><span>pour traiter les données promotionnelles chez Carrefour, une fois automatisées en Python</span></li>
-    <li><b>5</b><span>fournisseurs de LLM en cascade : mon agent IA continue de répondre si l'un tombe en panne</span></li>
-  </ul>
 
   <div class="actions" style="--i:4">
     <a class="btn" href="assets/CV_Tiago_de_Carvalho_Bene.pdf" download>Télécharger mon CV</a>
@@ -382,6 +367,5 @@ try { var t = localStorage.getItem('theme'); if (t === 'clair' || t === 'editori
 
 <script src="js/intro.js"></script>
 <script src="js/parcours.js"></script>
-<script src="js/theme.js"></script>
 </body>
 </html>
