@@ -176,18 +176,12 @@ h1 { font: 700 clamp(2.6rem, 7vw, 4.6rem)/1.04 var(--titre); letter-spacing: -.0
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(90deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.9) 40%, rgba(255,255,255,.45) 75%, rgba(255,255,255,.2) 100%);
 }
-.etape-fond figcaption, .etape-fond > figcaption {
-  position: absolute; right: 16px; bottom: 22%; z-index: 1; max-width: 60%;
-  padding: 4px 8px; border-radius: 6px; background: rgba(255, 255, 255, .9); color: var(--encre);
-  font: 400 .72rem/1.4 var(--mono);
-}
 @media (max-width: 759px) {
   .etape { min-height: 60vh; }
   /* Téléphone : l'écran est étroit, l'image remplit la bande et sert de texture derrière le texte */
   .etape-fond { padding: 0; }
   .etape-fond img { object-fit: cover; object-position: center; }
   .etape-fond::after { background: rgba(255, 255, 255, .86); }
-  .etape-fond figcaption { bottom: 20%; right: 12px; max-width: 70%; }
 }
 
 /* Animation : le titre monte mot à mot, puis la date et le texte apparaissent en fondu.
@@ -284,6 +278,7 @@ h1 { font: 700 clamp(2.6rem, 7vw, 4.6rem)/1.04 var(--titre); letter-spacing: -.0
 .pied { background: #16181D; color: #F7F7F5; }
 .pied-inner { max-width: 1100px; margin: 0 auto; padding: 48px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; }
 .pied-titre { font: 700 1.5rem var(--titre); }
+.credits { max-width: 1100px; margin: 0 auto; padding: 0 24px 28px; font: 400 .75rem/1.5 var(--mono); color: #A9AEBA; }
 .btn-clair { color: #16181D; background: #F7F7F5; }
 .btn-clair:hover { background: #fff; }
 .btn-contour { color: #F7F7F5; background: transparent; border: 1px solid #4A4F5C; }
