@@ -33,4 +33,23 @@
     });
   }, { rootMargin: '0px 0px -18% 0px', threshold: 0.2 });   // l'étape s'anime un peu avant le milieu de l'écran
   Array.prototype.forEach.call(etapes, function (el) { obs.observe(el); });
+
+  // Ligne de la frise : elle se remplit jusqu'au milieu de l'écran, et chaque point s'allume quand elle l'atteint
+  var liste = document.querySelector('.etapes'), ligne = document.querySelector('.remplissage');
+  if (!liste || !ligne) return;
+  var points = liste.querySelectorAll('.etape'), attente = 0;
+  function majLigne() {
+    attente = 0;
+    var r = liste.getBoundingClientRect(), repere = window.innerHeight * 0.6;
+    var p = Math.min(1, Math.max(0, (repere - r.top) / r.height));
+    ligne.style.setProperty('--progression', p.toFixed(4));
+    var bas = r.top + p * r.height;
+    Array.prototype.forEach.call(points, function (el) {
+      el.classList.toggle('atteint', el.getBoundingClientRect().top + 14 <= bas);
+    });
+  }
+  function demander() { if (!attente) attente = requestAnimationFrame(majLigne); }
+  window.addEventListener('scroll', demander, { passive: true });
+  window.addEventListener('resize', demander);
+  majLigne();
 })();
