@@ -63,71 +63,52 @@
 <!-- Parcours raconté : chaque étape apparaît quand on arrive dessus (titre qui monte mot à mot, puis texte en fondu) -->
 <section id="parcours" class="parcours" aria-labelledby="titre-parcours">
   <h2 id="titre-parcours" class="parcours-titre">Mon parcours</h2>
-  <div class="parcours-corps">
-  <!-- Une image par étape de la frise, dans le même ordre ; elles se remplacent en fondu au défilement (js/parcours.js) -->
-  <div class="parcours-images" aria-hidden="true">
-      <figure class="actif" data-image="0">
-        <img src="assets/parcours/aujourdhui.webp" alt="" loading="eager" style="object-position: 35% 50%">
-      </figure>
-      <figure class="" data-image="1">
-        <img src="assets/parcours/developpeur-ia.webp" alt="" loading="lazy" style="object-position: 70% 50%">
-      </figure>
-      <figure class="" data-image="2">
-        <img src="assets/parcours/bergerat.webp" alt="" loading="lazy" style="object-position: 50% 50%">
-      </figure>
-      <figure class="" data-image="3">
-        <img src="assets/parcours/carrefour.webp" alt="" loading="lazy" style="object-position: 50% 50%">
-      </figure>
-      <figure class="" data-image="4">
-        <img src="assets/parcours/edf.webp" alt="" loading="lazy" style="object-position: 50% 50%">
-      </figure>
-      <figure class="" data-image="5">
-        <img src="assets/parcours/master.webp" alt="" loading="lazy" style="object-position: 50% 50%">
-      </figure>
-      <figure class="" data-image="6">
-        <img src="assets/parcours/licence.webp" alt="" loading="lazy" style="object-position: 50% 20%">
-        <figcaption>Chapelle de la Sorbonne · Dessin d'après une photo de Wikimedia Commons <!-- [À COMPLÉTER AVANT DE POUSSER] auteur et licence de la photo d'origine, recopiés depuis sa page Commons (la licence CC BY s'applique aussi aux dessins qui en sont tirés) --></figcaption>
-      </figure>
-  </div>
+  <!-- Chaque étape a son image en fond (.etape-fond), qui apparaît en fondu quand l'étape arrive au milieu de l'écran (js/parcours.js) -->
   <ol class="etapes">
     <span class="remplissage" aria-hidden="true"></span>
     <li class="etape etape-fin">
+      <div class="etape-fond" aria-hidden="true"><img src="assets/parcours/aujourdhui.webp" alt="" loading="eager"></div>
       <p class="date">Aujourd'hui</p>
       <h3>Je cherche un poste en NLP, LLM ou data.</h3>
       <p class="desc">Disponible rapidement, basé à Paris. <a href="https://www.linkedin.com/in/tiago-andre-nlp">LinkedIn</a> · <a href="https://github.com/Tiiiagooo">GitHub</a></p>
     </li>
     <li class="etape">
+      <div class="etape-fond" aria-hidden="true"><img src="assets/parcours/developpeur-ia.webp" alt="" loading="lazy"></div>
       <p class="date">Depuis juillet 2026</p>
       <h3>Développeur IA et LLM</h3>
       <p class="desc">Un agent IA qui répond aux voyageurs d'un client en gestion locative : RAG, function calling, cascade de 5 fournisseurs de LLM, 156 tests automatisés, déploiement sur Google Cloud.</p>
     </li>
     <li class="etape">
+      <div class="etape-fond" aria-hidden="true"><img src="assets/parcours/bergerat.webp" alt="" loading="lazy"></div>
       <p class="date">Juillet 2025 – janvier 2026 · Bergerat Rent (Caterpillar)</p>
       <h3>Data Engineer</h3>
       <p class="desc">Une chaîne Microsoft Fabric en PySpark (Lakehouse Silver puis Gold) sur les données télématiques de plusieurs centaines de machines, des tableaux de bord Power BI présentés au directeur de l'activité location, et des scripts Python d'échange de données par API avec l'ERP/CRM.</p>
     </li>
     <li class="etape">
+      <div class="etape-fond" aria-hidden="true"><img src="assets/parcours/carrefour.webp" alt="" loading="lazy"></div>
       <p class="date">Juin 2024 – janvier 2025 · Carrefour, siège</p>
       <h3>Coordinateur Data Management</h3>
       <p class="desc">J'automatise en Python les flux de données promotionnelles : leur traitement ne prend plus qu'une demi-journée. Tableaux de bord Looker Studio pour la direction, et gouvernance des données promotionnelles.</p>
     </li>
     <li class="etape">
+      <div class="etape-fond" aria-hidden="true"><img src="assets/parcours/edf.webp" alt="" loading="lazy"></div>
       <p class="date">Avril – octobre 2023 · EDF R&amp;D</p>
       <h3>Data Scientist NLP, en stage</h3>
       <p class="desc">Un pipeline NLP de conformité vocale (SBERT et heuristiques), branché sur des modèles Speech-to-Text fine-tunés par l'équipe (Wav2Vec2, Whisper). F1 moyen de 79 %. Projet confidentiel : j'en parle en entretien.</p>
     </li>
     <li class="etape">
+      <div class="etape-fond" aria-hidden="true"><img src="assets/parcours/master.webp" alt="" loading="lazy"></div>
       <p class="date">2021 – 2023 · Sorbonne Université</p>
       <h3>Master Langue et Informatique</h3>
       <p class="desc">Spécialité NLP et IA. Mon mémoire : repérer les lieux d'Île-de-France dans 17 819 chansons, avec spaCy et une carte interactive. Et d'autres projets : reconnaissance vocale à base de HMM, OCR de pamphlets de la Fronde, attribution d'auteur par stylométrie.</p>
     </li>
     <li class="etape">
+      <div class="etape-fond" aria-hidden="true"><img src="assets/parcours/licence.webp" alt="" loading="lazy"><figcaption>Chapelle de la Sorbonne · Dessin d'après une photo de Wikimedia Commons <!-- [À COMPLÉTER AVANT DE POUSSER] auteur et licence de la photo d'origine, recopiés depuis sa page Commons (la licence CC BY s'applique aussi aux dessins qui en sont tirés) --></figcaption></div>
       <p class="date">2018 – 2021 · Sorbonne Université</p>
       <h3>Licence Sciences du Langage et Informatique</h3>
       <p class="desc">La linguistique et l'informatique, étudiées ensemble dès le départ. <!-- [À COMPLÉTER] ce que tu retiens de la Licence, en une phrase --></p>
     </li>
   </ol>
-  </div>
 </section>
 
 <section id="projets" class="projets-intro apparait">

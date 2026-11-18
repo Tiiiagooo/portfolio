@@ -34,25 +34,25 @@
   }, { rootMargin: '0px 0px -18% 0px', threshold: 0.2 });   // l'étape s'anime un peu avant le milieu de l'écran
   Array.prototype.forEach.call(etapes, function (el) { obs.observe(el); });
 
-  // Ligne de la frise : elle se remplit jusqu'au milieu de l'écran, et chaque point s'allume quand elle l'atteint
+  // Ligne de la frise : elle se remplit jusqu'au milieu de l'écran, et chaque point s'allume quand elle l'atteint ;
+  // l'image de fond de chaque étape apparaît et s'efface selon sa distance au milieu de l'écran
   var liste = document.querySelector('.etapes'), ligne = document.querySelector('.remplissage');
   if (!liste || !ligne) return;
   var points = liste.querySelectorAll('.etape'), attente = 0;
-  var images = document.querySelectorAll('.parcours-images figure');
   function majLigne() {
     attente = 0;
     var r = liste.getBoundingClientRect(), repere = window.innerHeight * 0.6;
     var p = Math.min(1, Math.max(0, (repere - r.top) / r.height));
     ligne.style.setProperty('--progression', p.toFixed(4));
     var bas = r.top + p * r.height;
-    var actif = 0;
-    Array.prototype.forEach.call(points, function (el, i) {
-      var atteint = el.getBoundingClientRect().top + 14 <= bas;
-      el.classList.toggle('atteint', atteint);
-      if (atteint) actif = i;
+    var vh = window.innerHeight;
+    Array.prototype.forEach.call(points, function (el) {
+      var re = el.getBoundingClientRect(), marge = parseFloat(getComputedStyle(el).paddingTop) || 0;
+      el.classList.toggle('atteint', re.top + marge + 14 <= bas);
+      // Image de fond : pleinement visible quand le centre de l'étape est au milieu de l'écran, puis elle s'efface
+      var ecart = Math.abs(re.top + re.height / 2 - vh / 2) / (vh * 0.75);
+      el.style.setProperty('--visibilite', Math.max(0, 1 - ecart).toFixed(3));
     });
-    // L'image affichée est celle de la dernière étape atteinte par la ligne
-    Array.prototype.forEach.call(images, function (f, i) { f.classList.toggle('actif', i === actif); });
   }
   function demander() { if (!attente) attente = requestAnimationFrame(majLigne); }
   window.addEventListener('scroll', demander, { passive: true });

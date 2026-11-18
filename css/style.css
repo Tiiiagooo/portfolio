@@ -134,8 +134,9 @@ h1 { font: 700 clamp(2.6rem, 7vw, 4.6rem)/1.04 var(--titre); letter-spacing: -.0
 .etapes { list-style: none; position: relative; }
 /* La ligne du temps à gauche */
 .etapes::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--ligne); }
-.etape { position: relative; padding: 0 0 clamp(64px, 14vh, 140px) 48px; max-width: 760px; }
-.etape:last-child { padding-bottom: 0; }
+/* Chaque étape est une bande : marge en haut et en bas pour son image de fond */
+.etape { --marge: clamp(56px, 11vh, 110px); position: relative; padding: var(--marge) 0 var(--marge) 48px; min-height: 72vh; box-sizing: border-box; }
+.etape > .date, .etape > h3, .etape > .desc { max-width: 760px; }
 /* La ligne qui se remplit en bleu au fil du défilement (hauteur pilotée par js/parcours.js) */
 .remplissage {
   position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--bleu);
@@ -143,7 +144,7 @@ h1 { font: 700 clamp(2.6rem, 7vw, 4.6rem)/1.04 var(--titre); letter-spacing: -.0
 }
 .anime .remplissage { transform: scaleY(var(--progression, 0)); }
 .etape::before {
-  content: ""; position: absolute; left: 0; top: 6px; width: 16px; height: 16px; border-radius: 50%;
+  content: ""; position: absolute; left: 0; top: calc(var(--marge) + 6px); width: 16px; height: 16px; border-radius: 50%;
   background: var(--fond); border: 2px solid #C9CBC5; box-sizing: border-box;
   transition: background-color .5s, border-color .5s;
 }
@@ -156,24 +157,35 @@ h1 { font: 700 clamp(2.6rem, 7vw, 4.6rem)/1.04 var(--titre); letter-spacing: -.0
 .etape::before { z-index: 1; }
 .parcours .chantier { margin-top: 64px; }
 
-/* Images de la frise : un panneau collant qui change d'image en fondu selon l'étape atteinte */
-.parcours-images { position: relative; overflow: hidden; background: #fff; border: 1px solid var(--ligne); }   /* dessins au trait sur fond blanc */
-.parcours-images figure { position: absolute; inset: 0; margin: 0; opacity: 0; transition: opacity .7s ease; }
-.parcours-images figure.actif { opacity: 1; }
-.parcours-images img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.parcours-images figcaption {
-  position: absolute; left: 10px; bottom: 10px; right: 10px; width: fit-content; max-width: calc(100% - 20px);
+/* Images de la frise : chaque étape a sa propre bande d'image, sur toute la largeur de l'écran, derrière son texte.
+   L'image apparaît en fondu quand l'étape arrive au milieu de l'écran et s'efface quand on la dépasse (js/parcours.js). */
+.etape-fond {
+  position: absolute; z-index: -1; top: 0; bottom: 0; left: calc(50% - 50vw); width: 100vw; box-sizing: border-box;
+  padding: 3vh max(24px, calc((100vw - 1100px) / 2)) 3vh 0;   /* l'image s'aligne sur le bord droit du contenu */
+  overflow: hidden; pointer-events: none; opacity: var(--visibilite, 1);
+  /* bords haut et bas adoucis, pour que deux bandes voisines se fondent */
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent);
+          mask-image: linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent);
+}
+/* L'image tient en entier (pas de recadrage), calée à droite : on voit tout le bâtiment */
+.etape-fond img { width: 100%; height: 100%; object-fit: contain; object-position: right center; display: block; }
+/* Voile blanc : opaque à gauche, là où est le texte, plus léger à droite pour laisser voir l'image */
+.etape-fond::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.9) 40%, rgba(255,255,255,.45) 75%, rgba(255,255,255,.2) 100%);
+}
+.etape-fond figcaption, .etape-fond > figcaption {
+  position: absolute; right: 16px; bottom: 22%; z-index: 1; max-width: 60%;
   padding: 4px 8px; border-radius: 6px; background: rgba(255, 255, 255, .9); color: var(--encre);
   font: 400 .72rem/1.4 var(--mono);
 }
-/* Ordinateur : la frise à gauche, l'image fixée à droite */
-@media (min-width: 960px) {
-  .parcours-corps { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 440px); gap: 56px; align-items: start; }
-  .parcours-images { order: 2; position: sticky; top: 12vh; height: 72vh; border-radius: 16px; }
-}
-/* Téléphone : un bandeau d'image collé en haut de l'écran, la frise défile dessous */
-@media (max-width: 959px) {
-  .parcours-images { position: sticky; top: 0; z-index: 2; height: 30vh; margin: 0 -24px 36px; }
+@media (max-width: 759px) {
+  .etape { min-height: 60vh; }
+  /* Téléphone : l'écran est étroit, l'image remplit la bande et sert de texture derrière le texte */
+  .etape-fond { padding: 0; }
+  .etape-fond img { object-fit: cover; object-position: center; }
+  .etape-fond::after { background: rgba(255, 255, 255, .86); }
+  .etape-fond figcaption { bottom: 20%; right: 12px; max-width: 70%; }
 }
 
 /* Animation : le titre monte mot à mot, puis la date et le texte apparaissent en fondu.
@@ -301,7 +313,6 @@ h1 { font: 700 clamp(2.6rem, 7vw, 4.6rem)/1.04 var(--titre); letter-spacing: -.0
   .anime .split .w > span { transform: none; transition: none; }
   .anime .etape .date, .anime .etape .desc { transform: none; }
   .anime .apparait { transform: none; }
-  .parcours-images figure { transition: none; }
 }
 /* ---------- Style « éditorial » : titres en Source Serif, texte en IBM Plex Sans, étiquettes en IBM Plex Mono, bleu encre ---------- */
 
