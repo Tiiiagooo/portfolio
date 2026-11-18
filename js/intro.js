@@ -14,8 +14,8 @@
   // Lignes affichées au démarrage : [classe, texte]
   var LIGNES = [
     ['', '$ demarrer --profil tiago'],
-    ['ok', '[ok] linguistique'],
     ['ok', '[ok] informatique'],
+    ['ok', '[ok] linguistique'],
     ['ok', '[ok] nlp · llm · data'],
     ['moi', '> bonjour.']
   ];
