@@ -16,6 +16,6 @@ Double-cliquer sur `index.html` : pas de serveur ni de compilation (HTML, CSS et
 | `css/style.css` | couleurs, typographie, mise en page, intro |
 | `js/intro.js` | intro de l'ordinateur (durée réglable avec `LENTEUR`) |
 | `js/parcours.js` | animation du parcours et des sections au défilement |
-| `assets/` | CV en PDF (sans numéro de téléphone) |
+| `assets/` | CV en PDF (sans numéro de téléphone) ; `assets/parcours/` : une image par étape de la frise |
 
 Accessibilité : l'intro se passe avec Échap ou le bouton « Passer l'intro » ; avec « réduire les animations », elle est jouée en fondus, sans zoom.

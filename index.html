@@ -63,6 +63,32 @@
 <!-- Parcours raconté : chaque étape apparaît quand on arrive dessus (titre qui monte mot à mot, puis texte en fondu) -->
 <section id="parcours" class="parcours" aria-labelledby="titre-parcours">
   <h2 id="titre-parcours" class="parcours-titre">Mon parcours</h2>
+  <div class="parcours-corps">
+  <!-- Une image par étape de la frise, dans le même ordre ; elles se remplacent en fondu au défilement (js/parcours.js) -->
+  <div class="parcours-images" aria-hidden="true">
+      <figure class="actif" data-image="0">
+        <img src="assets/parcours/aujourdhui.webp" alt="" loading="eager" style="object-position: 35% 50%">
+      </figure>
+      <figure class="" data-image="1">
+        <img src="assets/parcours/developpeur-ia.webp" alt="" loading="lazy" style="object-position: 70% 50%">
+      </figure>
+      <figure class="" data-image="2">
+        <img src="assets/parcours/bergerat.webp" alt="" loading="lazy" style="object-position: 50% 50%">
+      </figure>
+      <figure class="" data-image="3">
+        <img src="assets/parcours/carrefour.webp" alt="" loading="lazy" style="object-position: 50% 50%">
+      </figure>
+      <figure class="" data-image="4">
+        <img src="assets/parcours/edf.webp" alt="" loading="lazy" style="object-position: 50% 50%">
+      </figure>
+      <figure class="" data-image="5">
+        <img src="assets/parcours/master.webp" alt="" loading="lazy" style="object-position: 50% 50%">
+      </figure>
+      <figure class="" data-image="6">
+        <img src="assets/parcours/licence.webp" alt="" loading="lazy" style="object-position: 50% 30%">
+        <figcaption>Chapelle de la Sorbonne · Photo : Wikimedia Commons <!-- [À COMPLÉTER AVANT DE POUSSER] auteur et licence, recopiés depuis la page Commons de la photo --></figcaption>
+      </figure>
+  </div>
   <ol class="etapes">
     <span class="remplissage" aria-hidden="true"></span>
     <li class="etape etape-fin">
@@ -101,6 +127,7 @@
       <p class="desc">La linguistique et l'informatique, étudiées ensemble dès le départ. <!-- [À COMPLÉTER] ce que tu retiens de la Licence, en une phrase --></p>
     </li>
   </ol>
+  </div>
 </section>
 
 <section id="projets" class="projets-intro apparait">

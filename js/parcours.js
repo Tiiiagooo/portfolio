@@ -38,15 +38,21 @@
   var liste = document.querySelector('.etapes'), ligne = document.querySelector('.remplissage');
   if (!liste || !ligne) return;
   var points = liste.querySelectorAll('.etape'), attente = 0;
+  var images = document.querySelectorAll('.parcours-images figure');
   function majLigne() {
     attente = 0;
     var r = liste.getBoundingClientRect(), repere = window.innerHeight * 0.6;
     var p = Math.min(1, Math.max(0, (repere - r.top) / r.height));
     ligne.style.setProperty('--progression', p.toFixed(4));
     var bas = r.top + p * r.height;
-    Array.prototype.forEach.call(points, function (el) {
-      el.classList.toggle('atteint', el.getBoundingClientRect().top + 14 <= bas);
+    var actif = 0;
+    Array.prototype.forEach.call(points, function (el, i) {
+      var atteint = el.getBoundingClientRect().top + 14 <= bas;
+      el.classList.toggle('atteint', atteint);
+      if (atteint) actif = i;
     });
+    // L'image affichée est celle de la dernière étape atteinte par la ligne
+    Array.prototype.forEach.call(images, function (f, i) { f.classList.toggle('actif', i === actif); });
   }
   function demander() { if (!attente) attente = requestAnimationFrame(majLigne); }
   window.addEventListener('scroll', demander, { passive: true });
