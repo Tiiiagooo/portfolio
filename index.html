@@ -123,7 +123,7 @@
     </div>
     <ol class="sommaire">
       <li><a href="#agent"><span class="som-num">01</span><span class="som-titre">Agent IA de gestion locative</span><span class="som-domaine">LLM</span><span class="statut en-cours">En cours</span></a></li>
-      <li><a href="#marche"><span class="som-num">02</span><span class="som-titre">Analyse du marché de l'emploi data et IA</span><span class="som-domaine">Data · BI · SQL</span><span class="statut en-cours">En cours</span></a></li>
+      <li><a href="#marche"><span class="som-num">02</span><span class="som-titre">Le marché data et IA en France, en chiffres</span><span class="som-domaine">Data · BI · SQL</span><span class="statut en-cours">En cours</span></a></li>
       <li><a href="#kriolu"><span class="som-num">03</span><span class="som-titre">Pré-annotation du kriolu (capverdien)</span><span class="som-domaine">NLP</span><span class="statut en-cours">En cours</span></a></li>
       <li><a href="#memoire"><span class="som-num">04</span><span class="som-titre">Les lieux de Paris dans la chanson</span><span class="som-domaine">NLP</span><span class="statut termine">Terminé</span></a></li>
       <li><a href="#paroles"><span class="som-num">05</span><span class="som-titre">Génération de paroles</span><span class="som-domaine">LLM</span><span class="statut en-cours">En cours</span></a></li>
@@ -186,14 +186,15 @@
   <div class="projet-inner">
     <div class="proj-tete">
       <p class="proj-meta"><span class="proj-num">02</span><span class="proj-domaine">Data · BI · SQL</span><span class="statut en-cours">En cours</span></p>
-      <h3>Ce que les recruteurs data et IA demandent vraiment</h3>
-      <p class="proj-resume">Mon projet BI : une analyse du marché de l'emploi calculée à partir des offres que collecte mon outil JobScout. Les résultats arrivent bientôt ; seules des statistiques agrégées seront publiées, jamais le texte des offres.</p>
+      <h3>Le marché data et IA en France, en chiffres</h3>
+      <p class="proj-resume">Une analyse des offres d'emploi data et IA que collecte mon outil JobScout sur 13 sources. Les offres viennent de recherches data, IA et NLP : c'est un échantillon de ce marché, pas tout le marché de l'informatique. Seules des statistiques agrégées seront publiées, jamais le texte des offres.</p>
     </div>
     <div class="dmt">
       <div class="col">
         <p class="col-label">1 · Données</p>
         <ul>
-          <li>Plusieurs milliers d'offres d'emploi data et IA en France, collectées par JobScout.</li>
+          <li>Plusieurs milliers d'offres d'emploi data et IA, collectées par JobScout sur 13 sources (APEC, France Travail, Hellowork, LinkedIn, Welcome to the Jungle…).</li>
+          <li>Prévu : un enrichissement avec la base publique SIRENE (secteur, taille et siège des entreprises).</li>
           <li>Le texte des offres appartient aux sites et aux entreprises : il n'est pas republié.</li>
         </ul>
       </div>
@@ -203,7 +204,7 @@
           <li>Export de la base SQLite vers PostgreSQL.</li>
           <li>Transformations en SQL : CTE, fonctions de fenêtre.</li>
           <li>Modèle en étoile, tableau de bord Power BI.</li>
-          <li>Dictionnaire de technologies avec alias (Spark et Apache Spark, NLP et TAL).</li>
+          <li>Prévu : une mise à jour automatique des chiffres à partir des sources publiques (API France Travail, data.gouv).</li>
         </ul>
       </div>
       <div class="col">
@@ -211,8 +212,8 @@
         <ul>
           <li>Quels outils sont les plus demandés, et comment ça évolue ?</li>
           <li>Qu'exige-t-on vraiment d'un poste « junior » ?</li>
-          <li>L'en-tête de l'annonce dit-il la même chose que son texte ?</li>
-          <li>Comment les offres se répartissent par secteur et par région ?</li>
+          <li>La qualité des offres, source par source : republications, doublons, salaire affiché ou non, en-tête qui contredit le texte.</li>
+          <li>La langue des offres : variantes des intitulés, anglicismes, part d'offres rédigées en anglais.</li>
         </ul>
       </div>
     </div>
