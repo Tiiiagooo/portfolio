@@ -168,15 +168,24 @@
         </ul>
       </div>
     </div>
-    <div class="demo-apercu">
-      <div class="demo-tete"><span>Exemple de conversation · données fictives</span><span class="statut en-cours">Démo bientôt en ligne</span></div>
-      <div class="demo-fil">
-        <p class="bulle moi">Bonjour, est-ce que je peux arriver vers 22 h ?</p>
-        <div class="bulle-agent">
-          <p class="outils"><span>Réservation consultée · function calling</span><span>FAQ du logement · RAG</span></p>
-          <p class="bulle">Bonjour ! Votre réservation du 12 au 15 décembre prévoit une arrivée autonome : la boîte à clés est accessible à toute heure, et le code vous sera envoyé la veille.</p>
-        </div>
+    <!-- Démo en direct. data-api : adresse du service démo (localhost pour les essais,
+         puis l'adresse Cloud Run). data-sitekey : clé de SITE Turnstile, publique
+         (1x00000000000000000000AA = clé de test Cloudflare, à remplacer en ligne). -->
+    <div class="demo-apercu demo-live" id="demo-agent"
+         data-api="http://localhost:5000" data-sitekey="1x00000000000000000000AA">
+      <div class="demo-tete"><span>Parlez à l'agent · logement fictif</span><span class="statut en-cours">Démo en test</span></div>
+      <p class="demo-avertissement">Démo sur un logement inventé. Les messages sont envoyés à un modèle d'IA pour générer la réponse : n'écrivez aucune donnée personnelle (nom, e-mail, téléphone). Essayez par exemple : « Combien pour 2 nuits du 10 au 12 décembre ? »</p>
+      <div class="demo-fil" role="log" aria-live="polite" aria-label="Conversation avec l'agent"></div>
+      <form class="demo-saisie">
+        <label for="demo-message" class="sr-only">Votre message à l'agent</label>
+        <input id="demo-message" type="text" autocomplete="off" maxlength="500" placeholder="Votre question sur le logement…">
+        <button class="btn demo-envoyer" type="submit">Envoyer</button>
+      </form>
+      <div class="demo-pied">
+        <p class="demo-etat" role="status"></p>
+        <div class="demo-robot"></div>
       </div>
+      <noscript><p class="demo-avertissement">La démo a besoin de JavaScript.</p></noscript>
     </div>
     <div class="actions"><a class="btn" href="https://github.com/Tiiiagooo/agent-ia-publique" target="_blank" rel="noopener noreferrer">Présentation sur GitHub<span class="sr-only"> (nouvel onglet)</span></a></div>
   </div>
@@ -378,5 +387,7 @@
 
 <script src="js/intro.js"></script>
 <script src="js/parcours.js"></script>
+<script src="js/demo.js" defer></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&amp;onload=demoTurnstilePret" async defer></script>
 </body>
 </html>
