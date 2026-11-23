@@ -343,3 +343,4 @@ html[data-theme="editorial"] .etape::before {background: #fff; }
 .demo-pied { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; padding: 0 18px 14px; background: #fff; }
 .demo-etat { font-size: .85rem; color: var(--discret); min-height: 1.3em; }
 .demo-etat[data-type="erreur"] { color: #8A1C1C; font-weight: 600; }
+.demo-live .bulle img { display: block; max-width: 100%; height: auto; margin-top: 10px; border-radius: 10px; border: 1px solid var(--ligne); }

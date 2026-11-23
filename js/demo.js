@@ -110,6 +110,23 @@
     else bulle.appendChild(rendre(texte));
     fil.appendChild(bulle);
     fil.scrollTop = fil.scrollHeight;
+    return bulle;
+  }
+
+  // Images renvoyées par le serveur (calendrier en base64, photos en https).
+  // Créées par le code, jamais en HTML ; toute autre forme d'adresse est ignorée.
+  function ajouterImages(bulle, images) {
+    if (!Array.isArray(images)) return;
+    images.slice(0, 3).forEach(function (image) {
+      var src = image && typeof image.src === 'string' ? image.src : '';
+      if (src.indexOf('data:image/png;base64,') !== 0 && src.indexOf('https://') !== 0) return;
+      var img = document.createElement('img');
+      img.src = src;
+      img.alt = (image.legende && String(image.legende)) || 'Image envoyée par l’agent';
+      img.loading = 'lazy';
+      img.addEventListener('load', function () { fil.scrollTop = fil.scrollHeight; });
+      bulle.appendChild(img);
+    });
   }
 
   function occupe(oui) {
@@ -142,7 +159,7 @@
   }
 
   // ---------------------------------------------------------------- envoi
-  function envoyer(texte) {
+  function envoyer(texte, bulleMoi) {
     var corps = { message: texte };
     if (sessionId) corps.session_id = sessionId;
     else corps.turnstile = jeton;
@@ -159,13 +176,16 @@
       var d = res.d || {};
       if (res.statut === 200 && typeof d.reponse === 'string') {
         sessionId = d.session_id || sessionId;
-        ajouterBulle(d.reponse, 'agent');
+        ajouterImages(ajouterBulle(d.reponse, 'agent'), d.images);
         afficherEtat(typeof d.restant === 'number'
           ? 'Messages restants dans cette conversation : ' + d.restant : '', 'info');
         champ.focus();
         return;
       }
       var code = d.erreur || 'indisponible';
+      // Message NON traité : on retire la bulle et on rend le texte au champ.
+      if (bulleMoi && bulleMoi.parentNode) bulleMoi.parentNode.removeChild(bulleMoi);
+      if (!champ.value) champ.value = texte;
       if (code === 'verification_robot') { sessionId = null; nouveauJeton(); }
       afficherEtat(MESSAGES[code] || MESSAGES.indisponible, 'erreur');
       if (code === 'limite_session' || code === 'limite_jour' || code === 'demo_fermee') {
@@ -173,6 +193,8 @@
       }
     }).catch(function () {
       occupe(false);
+      if (bulleMoi && bulleMoi.parentNode) bulleMoi.parentNode.removeChild(bulleMoi);
+      if (!champ.value) champ.value = texte;
       afficherEtat(MESSAGES.reseau, 'erreur');
     });
   }
@@ -187,8 +209,8 @@
       afficherEtat('Vérification anti-robot en cours… réessayez dans une seconde.', 'attente');
       return;
     }
-    ajouterBulle(texte, 'moi');
+    var bulleMoi = ajouterBulle(texte, 'moi');
     champ.value = '';
-    envoyer(texte);
+    envoyer(texte, bulleMoi);
   });
 })();
