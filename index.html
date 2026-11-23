@@ -77,7 +77,7 @@
       <div class="etape-fond" aria-hidden="true"><img src="assets/parcours/developpeur-ia.webp" alt="" loading="lazy"></div>
       <p class="date">Depuis juillet 2026</p>
       <h3>Développeur IA et LLM</h3>
-      <p class="desc">Un agent IA qui répond aux voyageurs d'un client en gestion locative : RAG, function calling, cascade de 5 fournisseurs de LLM, 156 tests automatisés, déploiement sur Google Cloud.</p>
+      <p class="desc">Un agent IA qui répond aux voyageurs d'un client en gestion locative : RAG, function calling, cascade de 5 fournisseurs de LLM, 414 tests automatisés, déploiement sur Google Cloud.</p>
     </li>
     <li class="etape">
       <div class="etape-fond" aria-hidden="true"><img src="assets/parcours/bergerat.webp" alt="" loading="lazy"></div>
@@ -137,7 +137,7 @@
     <div class="proj-tete">
       <p class="proj-meta"><span class="proj-num">01</span><span class="proj-domaine">LLM</span><span class="statut en-cours">En cours</span></p>
       <h3>Agent IA de gestion locative</h3>
-      <p class="proj-resume">Un assistant qui répond aux voyageurs d'un client en gestion locative, sur WhatsApp et Airbnb. Une démo publique, sur des données fictives, arrive bientôt ici.</p>
+      <p class="proj-resume">Un assistant qui répond aux voyageurs d'un client en gestion locative, sur WhatsApp et Airbnb. Une démo publique est en ligne ci-dessous, sur un logement fictif.</p>
     </div>
     <div class="dmt">
       <div class="col">
@@ -154,10 +154,10 @@
         <ul>
           <li>LangChain et une API Flask.</li>
           <li>Function calling pour consulter les réservations.</li>
-          <li>Double RAG (embeddings Ollama) : la FAQ du logement, et seulement les consignes utiles à ce moment de la conversation.</li>
+          <li>Double RAG (embeddings nomic, par Ollama ou fastembed) : la FAQ du logement, et seulement les consignes utiles à ce moment de la conversation.</li>
           <li>Cascade de secours codée à la main : 6 niveaux, 5 fournisseurs de LLM, Claude Sonnet en principal.</li>
-          <li>156 tests pytest dans GitHub Actions, à chaque push.</li>
-          <li>Google Cloud : Docker Compose, Compute Engine, Cloud Run en service privé, Secret Manager, plafond de dépenses.</li>
+          <li>414 tests pytest dans GitHub Actions, à chaque push.</li>
+          <li>Google Cloud : Docker Compose, Compute Engine, Cloud Run (API privée, et démo publique protégée : anti-robot, limites, CORS), Secret Manager, plafond de dépenses.</li>
         </ul>
       </div>
       <div class="col">
@@ -168,15 +168,24 @@
         </ul>
       </div>
     </div>
-    <div class="demo-apercu">
-      <div class="demo-tete"><span>Exemple de conversation · données fictives</span><span class="statut en-cours">Démo bientôt en ligne</span></div>
-      <div class="demo-fil">
-        <p class="bulle moi">Bonjour, est-ce que je peux arriver vers 22 h ?</p>
-        <div class="bulle-agent">
-          <p class="outils"><span>Réservation consultée · function calling</span><span>FAQ du logement · RAG</span></p>
-          <p class="bulle">Bonjour ! Votre réservation du 12 au 15 décembre prévoit une arrivée autonome : la boîte à clés est accessible à toute heure, et le code vous sera envoyé la veille.</p>
-        </div>
+    <!-- Démo en direct (js/demo.js). data-api : service Cloud Run de la démo.
+         data-sitekey : clé de SITE Turnstile, publique (la clé secrète reste sur le serveur). -->
+    <div class="demo-apercu demo-live" id="demo-agent"
+         data-api="https://agent-ia-demo-1027145573500.europe-west1.run.app"
+         data-sitekey="0x4AAAAAAGIl-_ifW3LiLU1E">
+      <div class="demo-tete"><span>Parlez à l'agent · logement fictif</span><span class="statut en-cours">Démo en direct</span></div>
+      <p class="demo-avertissement">Démo sur un logement inventé. Les messages sont envoyés à un modèle d'IA pour générer la réponse : n'écrivez aucune donnée personnelle (nom, e-mail, téléphone). Essayez par exemple : « Combien pour 2 nuits du 10 au 12 décembre ? »</p>
+      <div class="demo-fil" role="log" aria-live="polite" aria-label="Conversation avec l'agent"></div>
+      <form class="demo-saisie">
+        <label for="demo-message" class="sr-only">Votre message à l'agent</label>
+        <input id="demo-message" type="text" autocomplete="off" maxlength="500" placeholder="Votre question sur le logement…">
+        <button class="btn demo-envoyer" type="submit">Envoyer</button>
+      </form>
+      <div class="demo-pied">
+        <p class="demo-etat" role="status"></p>
+        <div class="demo-robot"></div>
       </div>
+      <noscript><p class="demo-avertissement">La démo a besoin de JavaScript.</p></noscript>
     </div>
     <div class="actions"><a class="btn" href="https://github.com/Tiiiagooo/agent-ia-publique" target="_blank" rel="noopener noreferrer">Présentation sur GitHub<span class="sr-only"> (nouvel onglet)</span></a></div>
   </div>
@@ -380,5 +389,7 @@
 
 <script src="js/intro.js"></script>
 <script src="js/parcours.js"></script>
+<script src="js/demo.js" defer></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&amp;onload=demoTurnstilePret" async defer></script>
 </body>
 </html>
