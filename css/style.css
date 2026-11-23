@@ -327,3 +327,19 @@ html[data-theme="editorial"] .legende {background: #F7F7F8; }
 html[data-theme="editorial"] .projet.sombre {background: #111827; }
 html[data-theme="editorial"] .etape::before {background: #fff; }
 
+
+/* Démo en direct (js/demo.js). États : texte + symbole, jamais la couleur seule. */
+.demo-live .demo-fil { max-height: 460px; min-height: 160px; overflow-y: auto; }
+.demo-live .bulle { max-width: 86%; align-self: flex-start; }
+.demo-live .bulle.moi { align-self: flex-end; max-width: 78%; }
+.demo-live .bulle p + p, .demo-live .bulle ul { margin-top: 8px; }
+.demo-live .bulle ul { padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+.demo-live .bulle strong { font-weight: 600; }
+.demo-live .bulle a { word-break: break-all; }
+.demo-avertissement { padding: 12px 18px; font-size: .88rem; line-height: 1.5; color: var(--texte); background: #F2F4F8; border-bottom: 1px solid var(--ligne); }
+.demo-saisie { display: flex; gap: 10px; padding: 14px 18px; background: #fff; border-top: 1px solid var(--ligne); }
+.demo-saisie input { flex: 1; min-width: 0; padding: 10px 14px; font: inherit; font-size: .95rem; color: var(--encre); background: var(--fond); border: 1px solid #D5D7D1; border-radius: 10px; }
+.demo-saisie input:disabled, .demo-envoyer:disabled { opacity: .6; cursor: not-allowed; }
+.demo-pied { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; padding: 0 18px 14px; background: #fff; }
+.demo-etat { font-size: .85rem; color: var(--discret); min-height: 1.3em; }
+.demo-etat[data-type="erreur"] { color: #8A1C1C; font-weight: 600; }
