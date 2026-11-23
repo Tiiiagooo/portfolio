@@ -199,6 +199,14 @@
     });
   }
 
+  // Arrivée par le bouton « Tester mon agent IA » (#demo-agent) : le curseur
+  // est placé dans le champ, prêt à écrire.
+  function focusSiAncre() {
+    if (location.hash === '#demo-agent') champ.focus({ preventScroll: true });
+  }
+  window.addEventListener('hashchange', focusSiAncre);
+  focusSiAncre();
+
   champ.maxLength = LONGUEUR_MAX;
   formulaire.addEventListener('submit', function (e) {
     e.preventDefault();
