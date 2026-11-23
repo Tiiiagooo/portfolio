@@ -107,8 +107,11 @@
   var dejaVue = false;
   try { dejaVue = sessionStorage.getItem('intro-vue') === '1'; } catch (e) {}
 
-  if (dejaVue || !intro.animate || !window.Promise) {
-    // Pas d'intro : intro déjà vue pendant la visite, ou navigateur trop ancien
+  // Lien direct vers une section (#data, #agent…) : le visiteur vient pour ce contenu, on ne joue pas l'intro
+  var lienDirect = location.hash.length > 1;
+
+  if (dejaVue || lienDirect || !intro.animate || !window.Promise) {
+    // Pas d'intro : intro déjà vue pendant la visite, lien direct vers une section, ou navigateur trop ancien
     root.classList.add('pret');
     intro.style.display = 'none';
   } else {
