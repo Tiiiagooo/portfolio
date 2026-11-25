@@ -213,9 +213,10 @@
       <div class="col">
         <p class="col-label">2 · Méthode</p>
         <ul>
-          <li>Export de la base SQLite vers PostgreSQL.</li>
-          <li>Transformations en SQL : CTE, fonctions de fenêtre.</li>
-          <li>Modèle en étoile, tableau de bord Power BI.</li>
+          <li>Requêtes SQL sur la base SQLite de JobScout : CTE, fonctions de fenêtre.</li>
+          <li>Repérage des outils, de l'expérience demandée et de la langue dans le texte des offres (script Node.js).</li>
+          <li>Graphiques Plotly régénérés à chaque mise à jour de la base.</li>
+          <li>Prévu : modèle en étoile et tableau de bord Power BI.</li>
           <li>Prévu : une mise à jour automatique des chiffres à partir des sources publiques (API France Travail, data.gouv).</li>
         </ul>
       </div>
@@ -228,6 +229,28 @@
           <li>La langue des offres : variantes des intitulés, anglicismes, part d'offres rédigées en anglais.</li>
         </ul>
       </div>
+    </div>
+    <!-- Graphiques : data/marche/marche.js, généré et publié par JobScout après chaque scan
+         (scripts/marche). Plotly n'est chargé qu'à l'approche de la section. Sans données, le bloc reste masqué. -->
+    <div class="marche-graphes" hidden>
+      <div class="marche-barre">
+        <div class="marche-filtres" role="group" aria-label="Type de poste"></div>
+        <a class="marche-pdf" href="#" download>Télécharger le rapport complet (PDF)</a>
+      </div>
+      <p class="marche-chiffres" aria-live="polite"></p>
+      <div class="marche-grille">
+        <figure class="graphe" data-figure="outils" aria-label="Outils les plus cités dans les offres"></figure>
+        <figure class="graphe" data-figure="experience" aria-label="Expérience demandée dans les offres"></figure>
+        <figure class="graphe" data-figure="troisieme" aria-label="Évolution des outils les plus cités, mois par mois"></figure>
+        <div class="marche-synthese">
+          <h4>Conclusion</h4>
+          <div class="marche-conclusion"></div>
+          <h4>Les chiffres à retenir</h4>
+          <p class="marche-plus">Le rapport PDF va plus loin : outils propres à chaque type de poste, outils demandés ensemble, offres « junior » comparées à l'ensemble, qualité des offres site par site.</p>
+          <ul class="marche-faits"></ul>
+        </div>
+      </div>
+      <p class="marche-note">Chiffres agrégés uniquement : un outil ou un site cité dans moins de <span class="marche-seuil">5</span> offres n'est pas affiché. Type de poste déduit de l'intitulé de l'offre. Offres collectées avec <a href="https://github.com/latenightsbeats1208-pixel/jobscout">JobScout</a>, outil libre de Late Nights Tools (licence MIT) ; repérages, requêtes SQL, graphiques et conclusions : mon ajout.</p>
     </div>
   </div>
 </section>
@@ -391,6 +414,8 @@
 <script src="js/intro.js"></script>
 <script src="js/parcours.js"></script>
 <script src="js/demo.js" defer></script>
+<script src="data/marche/marche.js" defer></script>
+<script src="js/marche.js" defer></script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&amp;onload=demoTurnstilePret" async defer></script>
 </body>
 </html>

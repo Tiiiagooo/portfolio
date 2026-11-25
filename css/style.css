@@ -344,3 +344,34 @@ html[data-theme="editorial"] .etape::before {background: #fff; }
 .demo-etat { font-size: .85rem; color: var(--discret); min-height: 1.3em; }
 .demo-etat[data-type="erreur"] { color: #8A1C1C; font-weight: 600; }
 .demo-live .bulle img { display: block; max-width: 100%; height: auto; margin-top: 10px; border-radius: 10px; border: 1px solid var(--ligne); }
+/* Graphiques du projet « marché » (js/marche.js) */
+.marche-graphes { margin-top: 40px; }
+.marche-graphes[hidden] { display: none; }
+.marche-chiffres { color: #F7F7F5; font-family: var(--titre); font-size: 1.1rem; margin: 0 0 16px; }
+.marche-grille { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 8px; }
+@media (min-width: 1000px) {
+  .marche-grille { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; }
+  .marche-synthese { grid-column: 1 / -1; }
+}
+.marche-barre { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.marche-filtres { display: flex; flex-wrap: wrap; gap: 8px; }
+.marche-filtres button { font: inherit; font-size: .85rem; color: #C9CCD4; background: #1E2129; border: 1px solid #343843; border-radius: 999px; padding: 8px 14px; min-height: 40px; cursor: pointer; }
+.marche-filtres button:hover { border-color: var(--bleu-clair); color: #F7F7F5; }
+.marche-filtres button[aria-pressed="true"] { background: var(--bleu-clair); border-color: var(--bleu-clair); color: #16181D; font-weight: 600; }
+.marche-filtres button:focus-visible, .marche-pdf:focus-visible { outline: 2px solid var(--bleu-clair); outline-offset: 2px; }
+.marche-pdf { display: inline-flex; align-items: center; min-height: 40px; padding: 8px 16px; border-radius: 8px; background: var(--bleu); color: #fff; font-size: .85rem; font-weight: 600; text-decoration: none; }
+.marche-pdf:hover { background: var(--bleu-fonce); }
+.marche-synthese { padding: 18px 20px; background: #1E2129; border: 1px solid #343843; border-radius: 12px; color: #C9CCD4; }
+.marche-synthese h4 { margin: 0 0 8px; color: #F7F7F5; font-family: var(--titre); font-size: 1rem; }
+.marche-synthese h4:not(:first-child) { margin-top: 18px; }
+.marche-conclusion p { margin: 0 0 8px; color: #F7F7F5; line-height: 1.6; border-left: 3px solid var(--bleu-clair); padding-left: 12px; }
+.marche-conclusion .marche-vide { color: #9AA0AD; font-style: italic; border-left-color: #343843; }
+.marche-faits { margin: 0; padding-left: 18px; font-size: .9rem; line-height: 1.6; }
+.marche-plus { margin: 0 0 8px; font-size: .85rem; color: #9AA0AD; }
+@media (min-width: 1000px) { .marche-synthese { display: grid; grid-template-columns: 1fr 1fr; column-gap: 32px; } .marche-synthese h4:nth-of-type(2) { margin-top: 0; } .marche-synthese h4:nth-of-type(1) { grid-column: 1; grid-row: 1; } .marche-conclusion { grid-column: 1; grid-row: 2 / span 3; } .marche-synthese h4:nth-of-type(2), .marche-plus, .marche-faits { grid-column: 2; } }
+.marche-graphes .graphe { margin: 0; padding: 14px 12px 4px; background: #1E2129; border: 1px solid #343843; border-radius: 12px; min-height: 200px; min-width: 0; }
+.marche-note { color: #9AA0AD; font-size: .85rem; margin: 8px 0 0; }
+.marche-note a { color: var(--bleu-clair); }
+.marche-sql { margin: 4px 0 8px; }
+.marche-sql summary { cursor: pointer; color: var(--bleu-clair); font-size: .85rem; min-height: 32px; display: flex; align-items: center; }
+.marche-sql pre { margin: 6px 0 0; padding: 10px 12px; background: #16181D; border: 1px solid #343843; border-radius: 8px; color: #C9CCD4; font-family: var(--mono); font-size: .75rem; line-height: 1.5; overflow-x: auto; white-space: pre; }
