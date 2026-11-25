@@ -8,6 +8,8 @@
  * découpé en nœuds DOM (textContent) : gras **...**, listes « - », liens https.
  * Une réponse manipulée ne peut donc pas exécuter de script dans la page.
  * Aucune donnée n'est gardée dans le navigateur : recharger = nouvelle conversation.
+ * Mesure d'audience (js/mesure.js) : seuls des compteurs sont envoyés
+ * (question, réponse, refus, erreur), jamais le texte des messages.
  */
 (function () {
   'use strict';
@@ -239,6 +241,7 @@
     else corps.turnstile = jeton;
 
     occupe(true);
+    if (window.mesure) window.mesure('demo:question');
     fetch(API + '/demo/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -250,6 +253,7 @@
       var d = res.d || {};
       if (res.statut === 200 && typeof d.reponse === 'string') {
         sessionId = d.session_id || sessionId;
+        if (window.mesure) window.mesure('demo:reponse');
         ajouterImages(ajouterBulle(d.reponse, 'agent'), d.images);
         afficherEtat(typeof d.restant === 'number'
           ? 'Messages restants dans cette conversation : ' + d.restant : '', 'info');
@@ -257,6 +261,8 @@
         return;
       }
       var code = d.erreur || 'indisponible';
+      // Refus prévu par le serveur (limite, anti-robot…) ou vraie panne : comptés à part.
+      if (window.mesure) window.mesure(code === 'indisponible' ? 'demo:erreur' : 'demo:refus');
       // Message NON traité : on retire la bulle et on rend le texte au champ.
       if (bulleMoi && bulleMoi.parentNode) bulleMoi.parentNode.removeChild(bulleMoi);
       if (!champ.value) champ.value = texte;
@@ -267,6 +273,7 @@
       else if (code === 'limite_session') { champ.disabled = true; bouton.disabled = true; }
     }).catch(function () {
       occupe(false);
+      if (window.mesure) window.mesure('demo:erreur');
       if (bulleMoi && bulleMoi.parentNode) bulleMoi.parentNode.removeChild(bulleMoi);
       if (!champ.value) champ.value = texte;
       afficherEtat(MESSAGES.reseau, 'erreur');

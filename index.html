@@ -407,13 +407,16 @@
       <a class="btn btn-contour" href="https://github.com/Tiiiagooo" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (nouvel onglet)</span></a>
     </div>
   </div>
+  <p class="credits">Mesure d'audience : ce site ne dépose aucun cookie. Il compte, de façon globale et anonyme, les visites et leur provenance (par exemple LinkedIn ou un moteur de recherche), les sections consultées, les téléchargements et les utilisations de la démo. Le compteur est hébergé chez Cloudflare et ses données sont stockées dans l'Union européenne. Aucune adresse IP ni aucun identifiant n'est conservé : seuls des totaux par semaine sont gardés, puis supprimés au bout de 13 mois. Rien n'est compté si votre navigateur envoie un signal de refus (Do Not Track ou Global Privacy Control).</p>
   <p class="credits">Illustrations du parcours : dessins générés d'après des photos ; chapelle de la Sorbonne d'après une photo de Wikimedia Commons <!-- [À COMPLÉTER AVANT DE POUSSER] auteur et licence de la photo d'origine (ex. : « photo de X, CC BY 3.0 ») --></p>
 </footer>
 
 
 <script src="js/intro.js"></script>
 <script src="js/parcours.js"></script>
-<script src="js/demo.js" defer></script>
+<!-- Mesure d'audience sans cookie (js/mesure.js) : data-url = adresse du Worker « compteur-portfolio ». -->
+<script src="js/mesure.js?v=1" data-url="https://compteur-portfolio.tiiiagooo.workers.dev" defer></script>
+<script src="js/demo.js?v=2" defer></script>
 <script src="data/marche/marche.js" defer></script>
 <script src="js/marche.js" defer></script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&amp;onload=demoTurnstilePret" async defer></script>
