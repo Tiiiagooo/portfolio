@@ -29,7 +29,7 @@
   var deja = {};   // événements « une fois par chargement », en mémoire seulement
 
   function envoyer(nom) {
-    if (!actif || typeof nom !== 'string' || !/^[a-z]+:[a-z0-9-]{1,40}$/.test(nom)) return;
+    if (!actif || typeof nom !== 'string' || !/^[a-z]+:[a-z0-9_-]{1,40}$/.test(nom)) return;
     try {
       // text/plain : pas de requête préalable CORS. sendBeacon ne bloque pas la page.
       var corps = new Blob([nom], { type: 'text/plain' });
@@ -106,7 +106,7 @@
     var href = a.getAttribute('href') || '';
     if (a.classList.contains('marche-pdf')) {
       // Le nom du fichier téléchargé est « marche-data-ia-<filtre>.pdf » (js/marche.js).
-      var m = (a.getAttribute('download') || '').match(/^marche-data-ia-([a-z0-9-]{1,40})\.pdf$/);
+      var m = (a.getAttribute('download') || '').match(/^marche-data-ia-([a-z0-9_-]{1,40})\.pdf$/);
       if (m) envoyer('pdf:' + m[1]);
       return;
     }
