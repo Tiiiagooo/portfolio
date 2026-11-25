@@ -111,6 +111,7 @@
       return;
     }
     if (/CV_[^/]*\.pdf$/i.test(href)) { envoyer('cv:telechargement'); return; }
+    if (/(^|\/)memoire\/carte\.html$/.test(href)) { envoyer('projet:carte'); return; }
     if (href.indexOf('mailto:') === 0) { envoyer('clic:email'); return; }
     if (/linkedin\.com\/in\//i.test(href)) { envoyer('clic:linkedin'); return; }
     var propre = href.toLowerCase().replace(/^https?:\/\//, '').replace(/\/+$/, '');

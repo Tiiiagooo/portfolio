@@ -27,12 +27,19 @@
   if (!('IntersectionObserver' in window)) return;
   document.documentElement.classList.add('anime');
 
-  var obs = new IntersectionObserver(function (entrees) {
+  function reveler(entrees, obs) {
     entrees.forEach(function (e) {
       if (e.isIntersecting) { e.target.classList.add('vu'); obs.unobserve(e.target); }
     });
-  }, { rootMargin: '0px 0px -18% 0px', threshold: 0.2 });   // l'étape s'anime un peu avant le milieu de l'écran
-  Array.prototype.forEach.call(etapes, function (el) { obs.observe(el); });
+  }
+  // Étapes du parcours (blocs courts) : elles s'animent un peu avant le milieu de l'écran
+  var obsEtapes = new IntersectionObserver(reveler, { rootMargin: '0px 0px -18% 0px', threshold: 0.2 });
+  // Sections .apparait : dès que leur haut entre dans l'écran, quelle que soit leur hauteur.
+  // (Un seuil en % de la hauteur obligeait, sur téléphone, à défiler presque un écran de vide avant de voir le texte.)
+  var obsSections = new IntersectionObserver(reveler, { rootMargin: '0px 0px -10% 0px', threshold: 0 });
+  Array.prototype.forEach.call(etapes, function (el) {
+    (el.classList.contains('apparait') ? obsSections : obsEtapes).observe(el);
+  });
 
   // Ligne de la frise : elle se remplit jusqu'au milieu de l'écran, et chaque point s'allume quand elle l'atteint ;
   // l'image de fond de chaque étape apparaît et s'efface selon sa distance au milieu de l'écran

@@ -378,3 +378,12 @@ html[data-theme="editorial"] .etape::before {background: #fff; }
 /* Démo : annonce d'état (ouverte, fermée, limite) avant le premier message */
 .demo-annonce { margin: 0 auto; padding: 12px 16px; max-width: 92%; font-size: .92rem; line-height: 1.5; color: var(--encre); background: #fff; border: 1px dashed #B9BDB5; border-radius: 12px; text-align: center; }
 .demo-annonce a { font-weight: 600; }
+
+/* Mémoire : aperçu cliquable de la carte (la carte interactive est sur memoire/carte.html) */
+.memoire-carte { margin: 28px 0 20px; }
+.memoire-carte a { display: block; border: 1px solid var(--ligne); border-radius: 12px; overflow: hidden; }
+.memoire-carte img { display: block; width: 100%; height: auto; transition: transform .4s var(--ease-out); }
+.memoire-carte a:hover img { transform: scale(1.015); }
+.memoire-carte a:focus-visible { outline: 2px solid var(--bleu); outline-offset: 3px; }
+.memoire-carte figcaption { margin-top: 8px; font-size: .85rem; color: var(--discret); }
+@media (prefers-reduced-motion: reduce) { .memoire-carte img { transition: none; } }
