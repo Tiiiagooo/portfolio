@@ -30,6 +30,8 @@
   var jeton = null;          // jeton Turnstile, utile seulement pour ouvrir une conversation
   var widgetRobot = null;
   var enCours = false;
+  var ouverte = null;        // null = pas encore vérifié, puis true / false
+  var badge = racine.querySelector('.demo-tete .statut');
 
   // Messages affichés pour chaque refus du serveur (texte + symbole, jamais la couleur seule).
   var MESSAGES = {
@@ -138,8 +140,9 @@
   }
 
   // ---------------------------------------------------------------- anti-robot
+  // L'anti-robot ne s'affiche que si la démo est ouverte (inutile sinon).
   window.demoTurnstilePret = function () {
-    if (!window.turnstile || !zoneRobot || widgetRobot !== null) return;
+    if (!window.turnstile || !zoneRobot || widgetRobot !== null || ouverte !== true) return;
     widgetRobot = window.turnstile.render(zoneRobot, {
       sitekey: SITEKEY,
       language: 'fr',
@@ -151,7 +154,78 @@
       }
     });
   };
-  if (window.turnstile) window.demoTurnstilePret();
+
+  // ---------------------------------------------------------------- état de la démo
+  // Demandé AVANT le 1er message (GET /demo/etat), seulement quand le chat
+  // approche de l'écran : la page d'accueil ne réveille pas le serveur pour rien.
+  var lienMail = document.querySelector('a[href^="mailto:"]');
+
+  function annonce(texte, avecMail) {
+    var ancienne = fil.querySelector('.demo-annonce');
+    if (ancienne) ancienne.parentNode.removeChild(ancienne);
+    var bloc = document.createElement('p');
+    bloc.className = 'demo-annonce';
+    bloc.appendChild(document.createTextNode(texte));
+    if (avecMail && lienMail) {
+      var a = document.createElement('a');
+      a.href = lienMail.getAttribute('href').split('?')[0] +
+        '?subject=' + encodeURIComponent('Démo de l’agent IA');
+      a.textContent = 'écrivez-moi par e-mail';
+      bloc.appendChild(document.createTextNode(' Vous souhaitez la tester ? '));
+      bloc.appendChild(a);
+      bloc.appendChild(document.createTextNode(', je la rouvre pour vous.'));
+    }
+    fil.insertBefore(bloc, fil.firstChild);
+  }
+
+  function fermer(texte, etiquette) {
+    ouverte = false;
+    champ.disabled = true; bouton.disabled = true;
+    if (badge) badge.textContent = etiquette;
+    afficherEtat('', '');
+    annonce('✗ ' + texte, true);
+  }
+
+  function verifierEtat() {
+    afficherEtat('Vérification de la disponibilité de la démo', 'attente');
+    fetch(API + '/demo/etat', { cache: 'no-store' }).then(function (r) {
+      return r.ok ? r.json() : Promise.reject();
+    }).then(function (d) {
+      if (d && d.ouverte === true) {
+        ouverte = true;
+        if (badge) badge.textContent = 'Démo en direct';
+        afficherEtat('✓ Démo en ligne : posez votre question.', '');
+        if (window.turnstile) window.demoTurnstilePret();
+        focusSiAncre();
+      } else if (d && d.raison === 'limite_jour') {
+        fermer('La démo a atteint sa limite du jour. Revenez demain !', 'Limite du jour');
+      } else {
+        fermer('La démo est fermée pour le moment.', 'Démo fermée');
+      }
+    }).catch(function () {
+      // Serveur injoignable : on laisse essayer (un message relancera la démo).
+      ouverte = true;
+      afficherEtat('', '');
+      annonce('ℹ La démo met du temps à répondre. Vous pouvez essayer d’écrire, ou', true);
+      if (window.turnstile) window.demoTurnstilePret();
+    });
+  }
+
+  champ.disabled = true; bouton.disabled = true;     // jusqu'à la réponse
+  var verifie = false;
+  function lancerVerification() {
+    if (verifie) return;
+    verifie = true;
+    champ.disabled = false; bouton.disabled = false;
+    verifierEtat();
+  }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entrees, obs) {
+      if (entrees.some(function (e) { return e.isIntersecting; })) { obs.disconnect(); lancerVerification(); }
+    }, { rootMargin: '300px' }).observe(racine);
+  } else {
+    lancerVerification();
+  }
 
   function nouveauJeton() {
     jeton = null;
@@ -188,9 +262,9 @@
       if (!champ.value) champ.value = texte;
       if (code === 'verification_robot') { sessionId = null; nouveauJeton(); }
       afficherEtat(MESSAGES[code] || MESSAGES.indisponible, 'erreur');
-      if (code === 'limite_session' || code === 'limite_jour' || code === 'demo_fermee') {
-        champ.disabled = true; bouton.disabled = true;
-      }
+      if (code === 'demo_fermee') fermer('La démo est fermée pour le moment.', 'Démo fermée');
+      else if (code === 'limite_jour') fermer('La démo a atteint sa limite du jour. Revenez demain !', 'Limite du jour');
+      else if (code === 'limite_session') { champ.disabled = true; bouton.disabled = true; }
     }).catch(function () {
       occupe(false);
       if (bulleMoi && bulleMoi.parentNode) bulleMoi.parentNode.removeChild(bulleMoi);
